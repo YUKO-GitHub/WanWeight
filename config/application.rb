@@ -20,23 +20,20 @@ Bundler.require(*Rails.groups)
 
 module WanWeight
   class Application < Rails::Application
-    # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
 
     config.generators do |g|
-      g.assets false          # CSS, JavaScriptファイルは生成しない
-      g.test_framework false  # testファイルは生成しない
+      g.assets false
+      g.test_framework false
+      g.test_framework :rspec,
+        fixtures: false,
+        controller_specs: false,
+        view_specs: false,
+        helper_specs: false,
+        routing_specs: false
+      end
     end
 
-    # Configuration for the application, engines, and railties goes here.
-    #
-    # These settings can be overridden in specific environments using the files
-    # in config/environments, which are processed later.
-    #
-    # config.time_zone = "Central Time (US & Canada)"
-    # config.eager_load_paths << Rails.root.join("extras")
-
-    # Don't generate system test files.
     config.generators.system_tests = nil
   end
 end
