@@ -24,6 +24,9 @@ gem "turbo-rails"
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails"
 
+# Use Tailwind CSS [https://github.com/rails/tailwindcss-rails]
+gem "tailwindcss-rails"
+
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
@@ -53,6 +56,10 @@ group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
   gem 'rspec-rails'
   gem 'factory_bot_rails'
+end
+
+group :test do
+  gem 'capybara'
 end
 
 group :development do
