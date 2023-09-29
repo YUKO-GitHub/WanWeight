@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
-  devise_for :users
   root 'static_pages#home'
   get :terms, to: 'static_pages#terms'
   get :privacy_policy, to: 'static_pages#privacy_policy'
-  get :signup,       to: 'users#new'
+
   resources :users
+
+  devise_for :users, controllers: {
+    registrations: 'users/registrations',
+    sessions:      'users/sessions',
+  }
 end
