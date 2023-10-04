@@ -10,7 +10,11 @@
   <body>
     <p class = "notice"> <%= notice %> </p>
     <p class = "alert"> <%= alert %> </p>
-    <%= render 'shared/header' %>
+    <% if user_signed_in? %>
+      <%= render 'shared/logged_in_header' %>
+    <% else %>
+      <%= render 'shared/header' %>
+    <% end %>
     <%= yield %>
     <%= render 'shared/footer' %>
     <%= javascript_importmap_tags %>
