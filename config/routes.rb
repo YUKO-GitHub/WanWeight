@@ -9,6 +9,6 @@ Rails.application.routes.draw do
     sessions:      'users/sessions',
   }
 
-  resources :users
+  resources :users, only: [:show]
 
 end

@@ -1,36 +1,77 @@
 <div class="container mx-auto px-4">
   <div class="relative isolate pt-20">
     <div class="space-y-10 divide-y divide-gray-900/10">
-      <%= form_with model: @user, url: user_registration_path, local: true do |f| %>
-        <div class="grid grid-cols-1 gap-x-8 gap-y-8 md:grid-cols-3">
-          <div class="px-4 sm:px-0">
-            <h2 class="text-base font-semibold leading-7 text-gray-900">ユーザー情報</h2>
-          </div>
-          <%= render 'devise/shared/edit_profile', f: f %>
-        </div>
+      <%= turbo_frame_tag "profile" do %>
+        <%= form_with model: @user, url: user_registration_path, local: true do |f| %>
+          <div class="grid grid-cols-1 gap-x-8 gap-y-8 md:grid-cols-3">
+            <div class="px-4 sm:px-0">
+              <h2 class="text-base font-semibold leading-7 text-gray-900">ユーザー情報</h2>
+            </div>
 
-        <div class="pt-10 grid grid-cols-1 gap-x-8 gap-y-8 md:grid-cols-3">
-          <div class="px-4 sm:px-0">
-            <h2 class="text-base font-semibold leading-7 text-gray-900">アカウント情報</h2>
-          </div>
+            <div class="shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl md:col-span-2">
+              <div class="px-4 py-6 sm:p-8">
+                <div class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+                  <div class="sm:col-span-4">
+                    <%= f.label :name, "ユーザー名", class: "block mb-4 text-lg font-bold leading-6" %>
+                    <div class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
+                      <%= f.text_field :name, class:"block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-base sm:leading-6" %>
+                    </div>
+                  </div>
 
-          <div class="shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl md:col-span-2">
-            <div class="px-4 py-6 sm:p-8">
-              <div class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-                <div class="border-b-2 sm:col-span-4">
-                  <%= label_tag :password, "パスワード", class: "block text-lg font-bold leading-6" %>
-                  <div class="mt-2 sm:max-w-md">
-                    <span class="block py-1.5 pl-1 sm:text-base sm:leading-6">*********</span>
+                  <div class="sm:col-span-4">
+                    <%= f.label :email, "メールアドレス", class: "block mb-4 text-lg font-bold leading-6" %>
+                    <div class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
+                      <%= f.email_field :email, class:"block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-base sm:leading-6" %>
+                    </div>
+                  </div>
+
+                  <div class="sm:col-span-4">
+                    <%= f.label :birthday, "生年月日", class: "block mb-4 text-lg font-bold leading-6" %>
+                    <div class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
+                      <%= f.date_select :birthday, {start_year: 1950, end_year: 2023,
+                        include_blank: true, use_two_digit_numbers: true},
+                        {class: "input-tab birthday-select"} %>
+                    </div>
+                  </div>
+
+                  <div class="sm:col-span-4">
+                    <%= f.label :introduction, "自己紹介", class: "block text-lg font-bold leading-6" %>
+                    <div class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
+                      <%= f.text_area :introduction, class:"block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-base sm:leading-6" %>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="flex items-center justify-end gap-x-6 border-t border-gray-900/10 px-4 py-4 sm:px-8">
-              <button type="submit" class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">編集</button>
+              <div class="flex items-center justify-end gap-x-6 border-t border-gray-900/10 px-4 py-4 sm:px-8">
+                <%= f.submit "更新", class:"rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
+                <%= link_to "キャンセル", user_path(id: current_user.id), class:"rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
+              </div>
             </div>
           </div>
-        </div>
+        <% end %>
       <% end %>
+
+      <div class="pt-10 grid grid-cols-1 gap-x-8 gap-y-8 md:grid-cols-3">
+        <div class="px-4 sm:px-0">
+          <h2 class="text-base font-semibold leading-7 text-gray-900">アカウント情報</h2>
+        </div>
+
+        <div class="shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl md:col-span-2">
+          <div class="px-4 py-6 sm:p-8">
+            <div class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+              <div class="border-b-2 sm:col-span-4">
+                <%= label_tag :password, "パスワード", class: "block text-lg font-bold leading-6" %>
+                <div class="mt-2 sm:max-w-md">
+                  <span class="block py-1.5 pl-1 sm:text-base sm:leading-6">*********</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="flex items-center justify-end gap-x-6 border-t border-gray-900/10 px-4 py-4 sm:px-8">
+            <button type="submit" class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">編集</button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
