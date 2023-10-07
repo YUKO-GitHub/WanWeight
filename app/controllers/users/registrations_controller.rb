@@ -19,14 +19,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # PUT /resource
   def update
     self.resource = resource_class.to_adapter.get!(send(:"current_#{resource_name}").to_key)
-    prev_unconfirmed_email = resource.unconfirmed_email if resource.respond_to?(:unconfirmed_email)
   
     if update_resource(resource, account_update_params)
-      # 成功時はusers#showにリダイレクトする
       redirect_to user_path(resource), notice: "ユーザー情報を更新しました。"
     else
-      clean_up_passwords resource
-      set_minimum_password_length
       render :edit, status: :unprocessable_entity
     end
   end
