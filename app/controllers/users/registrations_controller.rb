@@ -17,9 +17,19 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+    self.resource = resource_class.to_adapter.get!(send(:"current_#{resource_name}").to_key)
+    prev_unconfirmed_email = resource.unconfirmed_email if resource.respond_to?(:unconfirmed_email)
+  
+    if update_resource(resource, account_update_params)
+      # 成功時はusers#showにリダイレクトする
+      redirect_to user_path(resource), notice: "ユーザー情報を更新しました。"
+    else
+      clean_up_passwords resource
+      set_minimum_password_length
+      render :edit, status: :unprocessable_entity
+    end
+  end
 
   # DELETE /resource
   # def destroy
@@ -39,6 +49,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def after_sign_up_path_for(resource)
     mypage_path(resource)
+  end
+
+  def update_resource(resource, params)
+    if params[:password].blank? && params[:password_confirmation].blank?
+      resource.update_without_password(params.except("current_password"))
+    else
+      super
+    end
   end
 
   # The path used after sign up for inactive accounts.
