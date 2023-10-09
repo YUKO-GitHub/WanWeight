@@ -46,6 +46,12 @@
         </div>
       <% end %>
 
+      <% if current_user %>
+  <%= current_user.name %>
+<% else %>
+  ユーザーが存在しません。
+<% end %>
+
       <%= turbo_frame_tag "account" do %>
         <div class="pt-10 grid grid-cols-1 gap-x-8 gap-y-8 md:grid-cols-3">
           <div class="px-4 sm:px-0">
