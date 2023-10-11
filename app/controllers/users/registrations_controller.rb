@@ -16,12 +16,4 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def after_sign_up_path_for(resource)
     mypage_path(resource)
   end
-
-  def update_resource(resource, params)
-    if params[:password].blank? && params[:password_confirmation].blank?
-      resource.update_without_password(params.except("current_password"))
-    else
-      super
-    end
-  end
 end
