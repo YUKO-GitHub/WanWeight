@@ -3,7 +3,7 @@
     <div class="space-y-10 divide-y divide-gray-900/10">
       <%= turbo_frame_tag "profile" do %>
         <%= form_with model: @user, url: profiles_show_path, local: true do |f| %>
-          <div class="grid grid-cols-1 gap-x-8 gap-y-8 md:grid-cols-3">
+          <div class="pt-10 grid grid-cols-1 gap-x-8 gap-y-8 md:grid-cols-3">
             <div class="px-4 sm:px-0">
               <h2 class="text-base font-semibold leading-7 text-gray-900">プロフィール編集</h2>
             </div>

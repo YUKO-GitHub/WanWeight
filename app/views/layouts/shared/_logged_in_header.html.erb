@@ -20,7 +20,8 @@
     </div>
     <div class="hidden lg:flex lg:flex-1 lg:justify-end">
       <%= link_to "マイページ", mypage_path, class: "mr-4 text-sm font-semibold leading-6 text-gray-900" %>
-      <%= link_to "ユーザー設定", profiles_show_path, class: "mr-4 text-sm font-semibold leading-6 text-gray-900" %>
+      <%= link_to "プロフィール", profiles_show_path, class: "mr-4 text-sm font-semibold leading-6 text-gray-900" %>
+      <%= link_to "設定", user_path(id: current_user.id), class: "mr-4 text-sm font-semibold leading-6 text-gray-900" %>
       <%= link_to "ログアウト", destroy_user_session_path, class: "mr-4 text-sm font-semibold leading-6 text-gray-900", method: :delete, data: { turbo_method: :delete } %>
     </div>
   </nav>
