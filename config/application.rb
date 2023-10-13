@@ -21,6 +21,9 @@ Bundler.require(*Rails.groups)
 module WanWeight
   class Application < Rails::Application
     config.load_defaults 7.0
+    config.i18n.default_locale = :ja
+    config.time_zone = 'Asia/Tokyo'
+
 
     config.generators do |g|
       g.assets false
