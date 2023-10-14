@@ -17,5 +17,5 @@ ja:
       dog:
         sex:
           unselected: 選択しない
-          female: おんなのこ
-          male: おとこのこ
+          female: 女の子
+          male: 男の子

@@ -12,7 +12,7 @@ class DogsController < ApplicationController
   def create
     @dog = current_user.dogs.build(dog_params)
     if @dog.save
-      redirect_to some_path, notice: '愛犬を登録しました'
+      redirect_to mypage_path, notice: '愛犬を登録しました'
     else
       render :new
     end

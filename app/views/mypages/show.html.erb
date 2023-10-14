@@ -4,14 +4,26 @@
   </div>
 
   <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
-    <h2>登録された愛犬</h2>
-    <% @dogs.each do |dog| %>
-      <div>
-        <h3><%= dog.name %></h3>
-        <p>生年月日: <%= dog.birthday %></p>
-        <p>性別: <%= Dog.human_attribute_name("sex.#{dog.sex}") %></p>
-        <p>品種: <%= dog.breed %></p>
-      </div>
+    <% if @dogs.blank? %>
+      <p>まだ愛犬は登録されていません。</p>
+      <%= link_to '愛犬を登録する', new_dog_path, class: "btn btn-primary" %>
+    <% else %>
+      <h2>登録された愛犬</h2>
+      <% @dogs.each do |dog| %>
+        <div>
+          <h3><%= dog.name %></h3>
+          <p>生年月日: <%= dog.birthday %></p>
+          <p>性別: <%= I18n.t("activerecord.enums.dog.sex.#{dog.sex}") %></p>
+          <p>品種: <%= dog.breed %></p>
+          <% if dog.profile_image.present? %>
+            <%= image_tag dog.profile_image.url %>
+          <% end %>
+
+          <%= link_to '編集', edit_dog_path(dog) %> |
+          <%= link_to '削除', dog_path(dog), method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %> |
+          <%= link_to '一覧に戻る', dogs_path %>
+        </div>
+      <% end %>
     <% end %>
   </div>
 </div>
