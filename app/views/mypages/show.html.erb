@@ -4,6 +4,14 @@
   </div>
 
   <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
-    <!-- Your content -->
+    <h2>登録された愛犬</h2>
+    <% @dogs.each do |dog| %>
+      <div>
+        <h3><%= dog.name %></h3>
+        <p>生年月日: <%= dog.birthday %></p>
+        <p>性別: <%= Dog.human_attribute_name("sex.#{dog.sex}") %></p>
+        <p>品種: <%= dog.breed %></p>
+      </div>
+    <% end %>
   </div>
 </div>
