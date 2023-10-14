@@ -8,7 +8,7 @@
       <p>まだ愛犬は登録されていません。</p>
       <%= link_to '愛犬を登録する', new_dog_path, class: "btn btn-primary" %>
     <% else %>
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mx-4 sm:mx-0">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mx-4 sm:mx-0">
         <% @dogs.each do |dog| %>
           <div class="flex bg-white mt-6 border border-gray-100 rounded-lg p-6 shadow-md">
             <% if dog.profile_image.present? %>
