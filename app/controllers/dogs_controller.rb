@@ -30,8 +30,11 @@ class DogsController < ApplicationController
   end
 
   def destroy
-    @dog.destroy
-    redirect_to some_path, notice: '愛犬の情報を削除しました'
+    if @dog.destroy
+      redirect_to mypage_path, notice: '愛犬の情報を削除しました', status: :see_other
+    else
+      redirect_to mypage_path, alert: '情報の削除に失敗しました。再度お試しください。'
+    end
   end
 
   private

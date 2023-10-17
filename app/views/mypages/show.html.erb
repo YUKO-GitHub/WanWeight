@@ -23,7 +23,9 @@
               <p class="mb-3 text-gray-700"><%= dog.breed %></p>
               <div class="text-sm text-blue-500">
                 <%= link_to '編集', edit_dog_path(dog) %> |
-                <%= link_to '削除', dog_path(dog), method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %> |
+                <%= button_to '削除', dog_path(dog),
+                    method: :delete, 
+                    form: { data: { turbo_confirm: "本当に#{dog.name}の情報を削除してよろしいですか？", turbo_frame: '_top' } } %>
               </div>
             </div>
           </div>
