@@ -1,9 +1,35 @@
 <div class="mt-6 py-10">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    <h1 class="text-3xl font-bold leading-tight tracking-tight text-gray-900">マイページ</h1>
+    <h1 class="mt-6 text-3xl font-bold leading-tight tracking-tight text-gray-900">マイページ</h1>
   </div>
 
   <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
-    <!-- Your content -->
+    <% if @dogs.blank? %>
+      <p>まだ愛犬は登録されていません。</p>
+      <%= link_to '愛犬を登録する', new_dog_path, class: "btn btn-primary" %>
+    <% else %>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mx-4 sm:mx-0">
+        <% @dogs.each do |dog| %>
+          <div class="flex bg-white mt-6 border border-gray-100 rounded-lg p-6 shadow-md">
+            <% if dog.profile_image.present? %>
+              <div class="w-1/4 mr-4">
+                <%= image_tag dog.profile_image.url, class: "rounded-full w-full shadow" %>
+              </div>
+            <% end %>
+            <div class="w-3/4">
+              <h3 class="text-xl font-semibold mb-2"><%= dog.name %></h3>
+              <p class="mb-1 text-gray-700">誕生日: <%= dog.birthday %></p>
+              <p class="mb-1 text-gray-700"><%= I18n.t("activerecord.enums.dog.sex.#{dog.sex}") %></p>
+              <p class="mb-3 text-gray-700"><%= dog.breed %></p>
+              <div class="text-sm text-blue-500">
+                <%= link_to '編集', edit_dog_path(dog) %> |
+                <%= link_to '削除', dog_path(dog), 
+                    data: { turbo_method: :delete, turbo_confirm: "本当に#{dog.name}の情報を削除してよろしいですか？" } %> |
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 </div>

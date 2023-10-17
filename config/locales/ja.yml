@@ -1,0 +1,21 @@
+ja:
+  activerecord:
+    attributes:
+      user:
+        name: 名前
+        birthday: 生年月日
+        height: 身長
+        profile_image: プロフィール画像
+        introduction: 自己紹介
+      dog:
+        name: 名前
+        birthday: 生年月日
+        sex: 性別
+        breed: 犬種
+        profile_image: プロフィール画像
+    enums:
+      dog:
+        sex:
+          unselected: 選択しない
+          female: 女の子
+          male: 男の子
