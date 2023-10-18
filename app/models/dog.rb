@@ -6,5 +6,4 @@ class Dog < ApplicationRecord
   validates :name, presence: true
   validates :birthday, presence: true
   validates :sex, inclusion: { in: Dog.sexes.keys }
-
 end
