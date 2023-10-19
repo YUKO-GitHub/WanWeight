@@ -42,7 +42,7 @@
           <%= f.label :password, "* パスワード", class: "block text-sm font-medium leading-6 text-gray-900" %>
           <% if @minimum_password_length %>
             <em class="block text-sm font-medium leading-6 text-gray-900">
-              (<%= @minimum_password_length %> 文字以上で入力してください)
+              (英数字を含む <%= @minimum_password_length %> 文字以上で入力してください)
             </em>
           <% end %>
           <div class="mt-2">
