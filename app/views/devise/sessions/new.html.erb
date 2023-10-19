@@ -7,7 +7,7 @@
     <div class="bg-white px-6 py-12 shadow sm:rounded-lg sm:px-12">
       <%= form_with model: @user, url: user_session_path, class: "space-y-6", local: true do |f| %>
         <div>
-          <%= f.label :email, "メールアドレス", class: "block text-sm font-medium leading-6 text-gray-900" %>
+          <%= f.label :email, class: "block text-sm font-medium leading-6 text-gray-900" %>
           <div class="mt-2">
             <%= f.email_field :email,
                   autofocus: true,
@@ -18,7 +18,7 @@
         </div>
 
         <div>
-          <%= f.label :password, "パスワード", class: "block text-sm font-medium leading-6 text-gray-900" %>
+          <%= f.label :password, class: "block text-sm font-medium leading-6 text-gray-900" %>
           <div class="mt-2">
             <%= f.password_field :password, 
                   autocomplete: "current-password", 
