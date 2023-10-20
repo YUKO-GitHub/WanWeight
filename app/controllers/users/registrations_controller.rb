@@ -5,6 +5,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
     mypage_path
   end
 
+  def after_update_path_for(resource)
+    user_path(id: current_user.id)
+  end
+
   def after_destroy_path_for(resource)
     root_path
   end

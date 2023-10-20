@@ -7,13 +7,13 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
+  VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i
 
-  validates :name, presence: true, length: {maximum: 50}
+  validates :name, presence: true, length: { maximum: 50 }
   validates :birthday, presence: true
   validates :email, length: { maximum: 255 }, uniqueness: { case_sensitive: false }
   validates :password, format: { with: VALID_PASSWORD_REGEX, message: 'は半角英数を両方含む必要があります' }, if: :password_present?
-  validates :introduction, length: {maximum: 50}
+  validates :introduction, length: { maximum: 50 }
 
   private
 
