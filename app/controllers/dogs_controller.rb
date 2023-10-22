@@ -12,9 +12,9 @@ class DogsController < ApplicationController
   def create
     @dog = current_user.dogs.build(dog_params)
     if @dog.save
-      redirect_to mypage_path, notice: '登録しました'
+      redirect_to mypage_path, notice: '愛犬を登録しました'
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -25,7 +25,7 @@ class DogsController < ApplicationController
     if @dog.update(dog_params)
       redirect_to mypage_path, notice: '更新しました'
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 

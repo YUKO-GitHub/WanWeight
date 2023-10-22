@@ -9,7 +9,7 @@ ja:
         introduction: 自己紹介
       dog:
         name: 名前
-        birthday: 生年月日
+        birthday: 誕生日
         sex: 性別
         breed: 犬種
         profile_image: プロフィール画像

@@ -32,7 +32,7 @@ Devise.setup do |config|
   # config.extend_remember_period = false
   # config.rememberable_options = {}
   config.password_length = 8..128
-  config.email_regexp = /\A[^@\s]+@[^@\s]+\z/
+  config.email_regexp = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   config.timeout_in = 30.minutes
   # config.lock_strategy = :failed_attempts
   # config.unlock_keys = [:email]

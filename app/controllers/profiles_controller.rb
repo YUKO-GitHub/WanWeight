@@ -12,9 +12,9 @@ class ProfilesController < ApplicationController
   def update
     @user = current_user
     if @user.update(user_params)
-      redirect_to profiles_show_path, notice: 'プロフィールを更新しました。'
+      redirect_to profiles_path, notice: 'プロフィールを更新しました。'
     else
-      render :edit, status: :unprocessable_entity
+      render :edit
     end
   end
 
