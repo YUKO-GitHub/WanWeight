@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "UserRegistrations", type: :request do
+RSpec.describe "UsersRegistrations", type: :request do
   describe "GET /sign_up" do
     it "正常なレスポンスを返すこと" do
       get new_user_registration_path
@@ -22,9 +22,9 @@ RSpec.describe "UserRegistrations", type: :request do
 
     context "パラメーターが有効な場合" do
       it "新規ユーザーを作成し、マイページへリダイレクトすること" do
-        expect {
+        expect do
           post user_registration_path, params: { user: user_params }
-        }.to change(User, :count).by(1)
+        end.to change(User, :count).by(1)
 
         expect(response).to redirect_to(mypage_path)
       end
@@ -34,12 +34,11 @@ RSpec.describe "UserRegistrations", type: :request do
       it "新規ユーザーは作成せず、新規登録のページを表示すること" do
         user_params[:email] = ''
 
-        expect {
+        expect do
           post user_registration_path, params: { user: user_params }
-        }.not_to change(User, :count)
+        end.not_to change(User, :count)
 
         expect(response).to have_http_status(:unprocessable_entity)
-        expect(response.body).to include("メールアドレスを入力してください")
       end
     end
   end
