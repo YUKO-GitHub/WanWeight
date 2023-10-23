@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "新規登録ページ", type: :system do
+RSpec.describe "新規登録", type: :system do
   before do
     visit new_user_registration_path
   end
@@ -9,7 +9,7 @@ RSpec.describe "新規登録ページ", type: :system do
     expect(page).to have_title page_title("新規登録")
   end
 
-  it "新規登録ページにアクセスできること" do
+  it "正しい要素が表示されていること" do
     expect(page).to have_content("新規登録")
     expect(page).to have_selector("label", text: "* ユーザー名")
     expect(page).to have_selector("label", text: "* 生年月日")
