@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'ログイン', type: :system do
+RSpec.describe 'ログインページ', type: :system do
   let(:user) { create(:user) }
 
   before do

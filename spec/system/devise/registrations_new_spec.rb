@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "新規登録", type: :system do
+RSpec.describe "新規登録ページ", type: :system do
   before do
     visit new_user_registration_path
   end

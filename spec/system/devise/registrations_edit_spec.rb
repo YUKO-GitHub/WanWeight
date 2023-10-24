@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "アカウント編集", type: :system do
+RSpec.describe "アカウント編集ページ", type: :system do
   let(:user) { create(:user) }
 
   before do
