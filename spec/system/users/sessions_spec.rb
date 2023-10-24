@@ -27,6 +27,11 @@ RSpec.describe 'ログイン', type: :system do
     expect(page).to have_button 'ログイン'
   end
 
+  it '「新しくアカウントを作成する」リンクが正しく動作すること' do
+    click_link '新しくアカウントを作成する'
+    expect(current_path).to eq new_user_registration_path
+  end
+
   it '有効な情報でログインできること' do
     fill_in 'メールアドレス', with: user.email
     fill_in 'パスワード', with: user.password
