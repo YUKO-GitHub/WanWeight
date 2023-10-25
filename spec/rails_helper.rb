@@ -27,6 +27,8 @@ RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
 
   config.include ApplicationHelper
+  config.include Devise::Test::IntegrationHelpers, type: :request
+  config.include Devise::Test::IntegrationHelpers, type: :system
 
   config.before(:each, type: :system) do
     driven_by :rack_test

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "StaticPages", type: :system do
+RSpec.describe "静的ページ", type: :system do
   describe "home" do
     before do
       visit root_path
