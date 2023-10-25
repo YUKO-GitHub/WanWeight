@@ -7,19 +7,19 @@
   <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-[480px]">
     <div class="bg-white px-6 py-12 shadow sm:rounded-lg sm:px-12">
       <%= form_with model: @dog, class: "space-y-6", local: true do |f| %>
+        <%= render 'dogs/shared/error_messages', dog: @dog %>
         <div>
-          <%= f.label :name, class: "block text-sm font-medium leading-6 text-gray-900" %>
+          <%= f.label :name, "* 名前", class: "block text-sm font-medium leading-6 text-gray-900" %>
           <div class="mt-2">
             <%= f.text_field :name, 
                   autofocus: true, 
                   autocomplete: "name", 
-                  required: true, 
                   class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %> 
           </div>
         </div>
 
         <div>
-          <%= f.label :birthday, class: "block text-sm font-medium leading-6 text-gray-900" %>
+          <%= f.label :birthday, "* 誕生日", class: "block text-sm font-medium leading-6 text-gray-900" %>
           <div class="mt-2">
             <%= f.date_select :birthday, {start_year: 2000, end_year: 2023,
               include_blank: true, use_two_digit_numbers: true},
@@ -40,7 +40,6 @@
           <div class="mt-2">
             <%= f.text_field :breed, 
                   autocomplete: "breed", 
-                  required: true, 
                   class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %> 
           </div>
         </div>
@@ -53,7 +52,7 @@
     </div>
 
     <div class="mt-10 text-center text-sm text-gray-500">
-      <%= link_to "マイページに戻る", dogs_path, class:"font-semibold leading-6 text-indigo-600 hover:text-indigo-500" %>
+      <%= link_to "マイページに戻る", mypage_path, class:"font-semibold leading-6 text-indigo-600 hover:text-indigo-500" %>
     </div>
   </div>
 </div>
