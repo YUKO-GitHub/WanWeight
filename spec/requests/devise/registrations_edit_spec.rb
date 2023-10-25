@@ -38,9 +38,9 @@ RSpec.describe "DeviseRegistrationsEdit", type: :request do
 
   describe "DELETE /delete_account" do
     it "アカウントを削除できること" do
-      expect {
+      expect do
         delete delete_user_registration_path
-      }.to change(User, :count).by(-1)
+      end.to change(User, :count).by(-1)
       expect(response).to redirect_to root_path
       follow_redirect!
       expect(response.body).to include("アカウントは正常に削除されました。")

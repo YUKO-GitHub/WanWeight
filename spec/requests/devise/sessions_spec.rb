@@ -10,7 +10,7 @@ RSpec.describe "DeviseSessions", type: :request do
         email: user.email,
         password: user.password,
         remember_me: '1',
-      }
+      },
     }
   end
 
