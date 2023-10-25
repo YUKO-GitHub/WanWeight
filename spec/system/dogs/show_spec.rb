@@ -9,6 +9,10 @@ RSpec.describe "マイページ", type: :system do
     visit mypage_path
   end
 
+  it "正しいタイトルが表示されること" do
+    expect(page).to have_title page_title('マイページ')
+  end
+
   context "愛犬が登録されていない場合" do
     let!(:dog) { nil }
 
