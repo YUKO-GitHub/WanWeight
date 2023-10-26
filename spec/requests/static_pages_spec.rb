@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "StaticPages", type: :request do
+RSpec.describe "StaticPagesController", type: :request do
   describe "GET #home" do
     it "正常なレスポンスを返すこと" do
       get root_path

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Profiles", type: :request do
+RSpec.describe "ProfilesController", type: :request do
   describe "GET /profiles" do
     it "正常なレスポンスを返すこと" do
       sign_in create(:user)

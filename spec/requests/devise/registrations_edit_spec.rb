@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "DeviseRegistrationsEdit", type: :request do
+RSpec.describe "RegistrationsControllerEdit", type: :request do
   let(:user) { create(:user) }
   let(:user_params) { attributes_for(:user) }
   let(:invalid_user_params) { attributes_for(:user, email: "") }
@@ -18,7 +18,7 @@ RSpec.describe "DeviseRegistrationsEdit", type: :request do
   end
 
   describe "PATCH /edit_account" do
-    context "有効な情報の場合" do
+    context "パラメーターが有効な場合" do
       it "アカウント情報を更新できること" do
         valid_params = user_params.merge(current_password: user.password)
         patch update_user_registration_path, params: { user: valid_params }
@@ -28,7 +28,7 @@ RSpec.describe "DeviseRegistrationsEdit", type: :request do
       end
     end
 
-    context "無効な情報の場合" do
+    context "パラメーターが無効な場合" do
       it "アカウント情報を更新できないこと" do
         patch update_user_registration_path, params: { user: invalid_user_params }
         expect(response.body).to include("メールアドレスを入力してください")

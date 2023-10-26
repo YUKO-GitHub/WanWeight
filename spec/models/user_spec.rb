@@ -63,7 +63,7 @@ RSpec.describe User, type: :model do
     expect(user.reload.email).to eq('example@example.com')
   end
 
-  it 'ユーザーは複数のDogと関連があること' do
+  it '複数のDogと関連があること' do
     dog1 = create(:dog, user: user)
     dog2 = create(:dog, user: user)
     expect(user.dogs).to include(dog1, dog2)

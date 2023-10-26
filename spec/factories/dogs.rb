@@ -1,10 +1,9 @@
 FactoryBot.define do
   factory :dog do
-    user { nil }
-    name { "MyString" }
-    birthday { "2023-10-13" }
-    sex { 1 }
-    breed { "MyString" }
-    profile_image { "MyString" }
+    association :user
+    sequence(:name) { |n| "レオ#{n}" }
+    birthday { "2020-01-01" }
+    sex { [:unselected, :female, :male].sample }
+    breed { "シバイヌ" }
   end
 end
