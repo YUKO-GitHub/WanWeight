@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Mypages", type: :request do
+RSpec.describe "MypagesController", type: :request do
   let(:user) { create(:user) }
   let!(:dog) { create(:dog, user: user) }
 

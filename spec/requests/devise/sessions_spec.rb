@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "DeviseSessions", type: :request do
+RSpec.describe "SessionsController", type: :request do
   let(:user) { create(:user) }
   let(:valid_attributes) { { user: { email: user.email, password: user.password } } }
   let(:invalid_attributes) { { user: { email: "", password: "" } } }
