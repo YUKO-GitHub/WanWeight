@@ -16,7 +16,7 @@
           <h3 class="text-xl font-semibold mb-2"><%= current_user.name %></h3>
           <% if @latest_user_weight %>
             <p class="mb-1 text-gray-700">前回の記録: <%= @latest_user_weight.weight %> kg</p>
-            <p class="mb-1 text-gray-700">記録日: <%= @latest_user_weight.date.to_s(:custom_datetime) %></p>
+            <p class="mb-1 text-gray-700 text-xs">記録日: <%= @latest_user_weight.date.to_s(:custom_datetime) %></p>
           <% else %>
             <p class="mb-1 text-gray-700">体重の記録がありません</p>
           <% end %>
@@ -26,36 +26,7 @@
         </div>
       </div>
   
-      <div class="w-full md:w-1/2 p-4 bg-gray-100">
-        <%= line_chart @user_weights_for_month, 
-            height: "250px", 
-            library: { 
-              title: "直近1ヶ月の体重推移", 
-              scales: { 
-                y: { 
-                  min: @latest_user_weight.weight - 20,
-                  max: @latest_user_weight.weight + 20,
-                  ticks: {
-                    stepSize: 0.1
-                  }
-                },
-                x: { 
-                  type: 'time',
-                  time: {
-                    unit: 'day',
-                    displayFormats: {
-                      day: 'MM/dd'
-                    },
-                    tooltipFormat: 'MM/dd'
-                  },
-                  ticks: {
-                    source: 'data'
-                  }
-                }
-              } 
-            }
-        %>
-      </div>
+      <%= render 'mypages/shared/user_weight_chart', user_weight: @user_weights_for_month, latest_weight: @latest_user_weight %>
     </div>
   
     <% if @dogs.blank? %>
