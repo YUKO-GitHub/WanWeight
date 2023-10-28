@@ -5,7 +5,7 @@
   </div>
 
   <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
-    <div class="flex flex-col md:flex-row bg-white mt-6 border border-gray-100 rounded-lg p-6 shadow-md">
+    <div class="flex flex-col md:flex-row bg-white mt-6 mx-2 border border-gray-100 rounded-lg p-6 shadow-md">
       <div class="w-full md:w-1/2 p-4">
         <% if current_user.profile_image.present? %>
           <div class="w-1/4 mr-4">
@@ -16,7 +16,7 @@
           <h3 class="text-xl font-semibold mb-2"><%= current_user.name %></h3>
           <% if @latest_user_weight %>
             <p class="mb-1 text-gray-700">前回の記録: <%= @latest_user_weight.weight %> kg</p>
-            <p class="mb-1 text-gray-700">記録日: <%= @latest_user_weight.date %></p>
+            <p class="mb-1 text-gray-700">記録日: <%= @latest_user_weight.date.to_s(:custom_datetime) %></p>
           <% else %>
             <p class="mb-1 text-gray-700">体重の記録がありません</p>
           <% end %>
@@ -28,7 +28,7 @@
   
       <div class="w-full md:w-1/2 p-4 bg-gray-100">
         <%= line_chart @user_weights_for_month, 
-            height: "300px", 
+            height: "250px", 
             library: { 
               title: "直近1ヶ月の体重推移", 
               scales: { 
@@ -62,35 +62,29 @@
       <p>まだ愛犬は登録されていません。</p>
       <%= link_to '愛犬を登録する', new_dog_path, class: "btn btn-primary" %>
     <% else %>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mx-4 sm:mx-0">
-        <% @dogs.each do |dog| %>
-          <div class="flex flex-col md:flex-row bg-white mt-6 border border-gray-100 rounded-lg p-6 shadow-md">
-            <!-- 愛犬のプロフィールカード -->
-            <div class="w-full md:w-1/2 p-4">
-              <% if dog.profile_image.present? %>
-                <div class="w-1/4 mr-4">
-                  <%= image_tag dog.profile_image.url, class: "rounded-full w-full shadow" %>
-                </div>
-              <% end %>
-              <h3 class="text-xl font-semibold mb-2"><%= dog.name %></h3>
-              <p class="mb-1 text-gray-700">誕生日: <%= dog.birthday %></p>
-              <p class="mb-1 text-gray-700"><%= I18n.t("activerecord.enums.dog.sex.#{dog.sex}") %></p>
-              <p class="mb-3 text-gray-700"><%= dog.breed %></p>
-              <div class="text-sm text-blue-500">
-                <%= link_to '編集', edit_dog_path(dog) %> |
-                <%= link_to '削除', dog_path(dog), 
-                    data: { turbo_method: :delete, turbo_confirm: "本当に#{dog.name}の情報を削除してよろしいですか？" } %> |
+      <% @dogs.each do |dog| %>
+        <div class="flex flex-col md:flex-row bg-white mt-6 mx-2 border border-gray-100 rounded-lg p-6 shadow-md">
+          <div class="w-full md:w-1/2 p-4">
+            <% if dog.profile_image.present? %>
+              <div class="w-1/4 mr-4">
+                <%= image_tag dog.profile_image.url, class: "rounded-full w-full shadow" %>
               </div>
-            </div>
-  
-            <!-- 愛犬の体重グラフ -->
-            <div class="w-full md:w-1/2 p-4 bg-gray-100">
-              <!-- 体重グラフのプレースホルダー -->
-              <p>ここに<%= dog.name %>の体重グラフが表示されます</p>
+            <% end %>
+            <h3 class="text-xl font-semibold mb-2"><%= dog.name %></h3>
+            <p class="mb-1 text-gray-700">誕生日: <%= dog.birthday %></p>
+            <p class="mb-1 text-gray-700"><%= I18n.t("activerecord.enums.dog.sex.#{dog.sex}") %></p>
+            <p class="mb-3 text-gray-700"><%= dog.breed %></p>
+            <div class="text-sm text-blue-500">
+              <%= link_to '編集', edit_dog_path(dog) %> |
+              <%= link_to '削除', dog_path(dog), 
+                  data: { turbo_method: :delete, turbo_confirm: "本当に#{dog.name}の情報を削除してよろしいですか？" } %> |
             </div>
           </div>
-        <% end %>
-      </div>
+          <div class="w-full md:w-1/2 p-4 bg-gray-100">
+            <p>ここに<%= dog.name %>の体重グラフが表示されます</p>
+          </div>
+        </div>
+      <% end %>
     <% end %>
   </div>
 </div>
