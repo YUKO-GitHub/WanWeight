@@ -16,7 +16,7 @@
           <h3 class="text-xl font-semibold mb-2"><%= current_user.name %></h3>
           <% if @latest_user_weight %>
             <p class="mb-1 text-gray-700">前回の記録: <%= @latest_user_weight.weight %> kg</p>
-            <p class="mb-1 text-gray-700 text-xs">記録日: <%= @latest_user_weight.date.to_s(:custom_datetime) %></p>
+            <p class="mb-1 text-gray-700 text-xs">記録日: <%= @latest_user_weight.date.to_fs(:custom_datetime) %></p>
           <% else %>
             <p class="mb-1 text-gray-700">体重の記録がありません</p>
           <% end %>

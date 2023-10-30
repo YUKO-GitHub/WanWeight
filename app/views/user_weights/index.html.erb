@@ -15,12 +15,11 @@
     <% if @user_weights_for_graph.any? %>
       <%= line_chart @user_weights_for_graph, height: "250px" %>
     <% else %>
-      <p>No data available.</p>
+      <p>体重の記録がありません</p>
     <% end %>
   </div>
 
   <div class="mx-auto max-w-7xl sm:px-6 lg:px-8 mt-6">
-    <h2 class="text-xl font-semibold mb-4">体重の一覧</h2>
     <table class="min-w-full bg-white border rounded">
       <thead>
         <tr>
