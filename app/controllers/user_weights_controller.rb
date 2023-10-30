@@ -1,5 +1,16 @@
 class UserWeightsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_user_weight, only: [:edit, :update, :destroy]
+  before_action :combine_date_and_time, only: [:create, :update]
+
+  def index
+    @year, @month = params[:date]&.split('-') || [Date.today.year, Date.today.month]
+    start_date = Date.new(@year.to_i, @month.to_i, 1)
+    end_date = start_date.end_of_month
+
+    @user_weights = current_user.user_weights.where(date: start_date..end_date).order(date: :desc)
+    @user_weights_for_graph = @user_weights.map { |weight| [weight.date.to_date, weight.weight] }.to_h
+  end
 
   def new
     @user_weight = current_user.user_weights.new
