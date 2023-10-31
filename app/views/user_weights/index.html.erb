@@ -4,7 +4,7 @@
     <h1 class="mt-6 text-3xl font-bold leading-tight tracking-tight text-gray-900">体重の管理</h1>
   </div>
 
-  <div class="mx-auto max-w-7xl sm:px-6 lg:px-8 mt-6">
+  <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 mt-6">
     <div class="flex justify-between items-center mb-4">
       <div>
         <%= form_with(url: user_weights_path, method: :get, local: true) do |f| %>
@@ -19,8 +19,8 @@
     <% end %>
   </div>
 
-  <div class="mx-auto max-w-7xl sm:px-6 lg:px-8 mt-6">
-    <table class="min-w-full bg-white border rounded">
+  <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 mt-6">
+    <table class="min-w-full bg-white border rounded text-sm md:text-base">
       <thead>
         <tr>
           <th class="text-left px-4 py-2">日時</th>
@@ -35,7 +35,8 @@
           <td class="border px-4 py-2"><%= user_weight.weight %> kg</td>
           <td class="border px-4 py-2">
             <%= link_to '編集', edit_user_weight_path(user_weight) %> |
-            <%= link_to '削除', user_weight_path(user_weight), method: :delete, data: { confirm: "本当に削除しますか？" } %>
+            <%= link_to '削除', user_weight_path(user_weight), 
+                data: { turbo_method: :delete, turbo_confirm: "本当に削除してよろしいですか？" } %>
           </td>
         </tr>
         <% end %>

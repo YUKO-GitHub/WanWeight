@@ -41,7 +41,7 @@ class UserWeightsController < ApplicationController
 
   def destroy
     @user_weight.destroy
-    redirect_to mypage_path, notice: '体重が正常に削除されました。'
+    redirect_to user_weights_path, notice: '体重が正常に削除されました。'
   end
 
   private
