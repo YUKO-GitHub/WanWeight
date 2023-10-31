@@ -1,0 +1,30 @@
+<div class="w-full md:w-1/2 p-4 bg-gray-100">
+  <%= line_chart user_weight, 
+      height: "250px", 
+      library: { 
+        title: "直近1ヶ月の体重推移", 
+        scales: { 
+          y: { 
+            min: (latest_weight.weight - 20).floor,
+            max: (latest_weight.weight + 20).floor,
+            ticks: {
+              stepSize: 0.1
+            }
+          },
+          x: { 
+            type: 'time',
+            time: {
+              unit: 'day',
+              displayFormats: {
+                day: 'MM/dd'
+              },
+              tooltipFormat: 'MM/dd'
+            },
+            ticks: {
+              source: 'data'
+            }
+          }
+        } 
+      }
+  %>
+</div>

@@ -22,4 +22,5 @@ Rails.application.routes.draw do
   end
 
   resources :dogs
+  resources :user_weights
 end
