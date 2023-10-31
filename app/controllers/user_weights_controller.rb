@@ -11,6 +11,7 @@ class UserWeightsController < ApplicationController
 
     @user_weights = current_user.user_weights.where(date: start_date..end_date).order(date: :desc)
     @user_weights_for_graph = @user_weights.map { |weight| [weight.date.to_date, weight.weight] }.to_h
+    @latest_user_weight = @user_weights.first
   end
 
   def new

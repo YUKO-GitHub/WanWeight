@@ -13,7 +13,7 @@
       </div>
     </div>
     <% if @user_weights_for_graph.any? %>
-      <%= line_chart @user_weights_for_graph, height: "250px" %>
+      <%= render 'user_weights/shared/user_weight_chart', user_weight: @user_weights_for_graph, latest_weight: @latest_user_weight %>
     <% else %>
       <p>体重の記録がありません</p>
     <% end %>
