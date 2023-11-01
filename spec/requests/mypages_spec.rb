@@ -26,7 +26,7 @@ RSpec.describe "MypagesController", type: :request do
 
       it "体重記録がレスポンスに含まれていること" do
         expect(response.body).to include user_weight.weight.to_s
-        expect(response.body).to include user_weight.date.strftime('%Y-%m-%d')
+        expect(response.body).to include user_weight.date.to_fs(:custom_datetime)
       end
     end
 
