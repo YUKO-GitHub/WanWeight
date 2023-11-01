@@ -28,7 +28,6 @@ RSpec.describe "MypagesController", type: :request do
         expect(response.body).to include user_weight.weight.to_s
         expect(response.body).to include user_weight.date.strftime('%Y-%m-%d')
       end
-
     end
 
     context "未ログインの場合" do
