@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :user_weight do
-    user { nil }
-    weight { 1.5 }
-    date { "2023-10-26 21:55:19" }
+    weight { rand(50..100).to_f }
+    date { Faker::Date.between(from: 30.days.ago, to: Date.today) }
+    association :user
   end
 end

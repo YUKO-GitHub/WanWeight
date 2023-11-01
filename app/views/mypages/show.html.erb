@@ -26,7 +26,11 @@
           </div>
         </div>
       </div>
-      <%= render 'mypages/shared/user_weight_chart', user_weight: @user_weights_for_month, latest_weight: @latest_user_weight %>
+      <% if @latest_user_weight.present? %>
+        <%= render 'mypages/shared/user_weight_chart', user_weight: @user_weights_for_month, latest_weight: @latest_user_weight %>
+      <% else %>
+        <p>体重の記録がありません</p>
+      <% end %>
     </div>
   
     <% if @dogs.blank? %>

@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "マイページ", type: :system do
   let(:user) { create(:user) }
+  let!(:user_weight) { create(:user_weight, user: user) }
   let!(:dog) { create(:dog, user: user) }
 
   before do
