@@ -13,7 +13,7 @@ RSpec.describe "愛犬編集ページ", type: :system do
     expect(page).to have_title page_title("愛犬編集")
   end
 
-  it "有効な愛犬情報で編集できること" do
+  it "有効な情報で編集できること" do
     fill_in "名前", with: "ポンタ"
     select "2023", from: "dog_birthday_1i"
     select "01", from: "dog_birthday_2i"
@@ -26,7 +26,7 @@ RSpec.describe "愛犬編集ページ", type: :system do
     expect(page).to have_content "更新しました"
   end
 
-  it "無効な愛犬情報では編集できないこと" do
+  it "無効な情報では編集できないこと" do
     fill_in "名前", with: ""
     click_button "変更を保存"
 

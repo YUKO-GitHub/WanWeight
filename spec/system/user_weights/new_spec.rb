@@ -20,7 +20,7 @@ RSpec.describe "ユーザー体重記録ページ", type: :system do
     expect(page).to have_selector "input[type='submit']"
   end
 
-  it "正常に体重を記録できること" do
+  it "有効な情報で新規登録できること" do
     fill_in "user_weight[date_part]", with: Date.current.strftime("%Y-%m-%d")
     fill_in "user_weight[time_part]", with: Time.current.strftime("%H:%M")
     fill_in "体重", with: "65.5"
@@ -31,7 +31,7 @@ RSpec.describe "ユーザー体重記録ページ", type: :system do
     expect(page).to have_current_path(mypage_path)
   end
 
-  it "エラーメッセージを表示すること" do
+  it "無効な情報では新規登録できないこと" do
     fill_in "user_weight[date_part]", with: Date.current.strftime("%Y-%m-%d")
     fill_in "user_weight[time_part]", with: Time.current.strftime("%H:%M")
     click_button "保存"

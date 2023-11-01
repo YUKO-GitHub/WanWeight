@@ -33,7 +33,7 @@ class UserWeightsController < ApplicationController
   def update
     combine_date_and_time
     if @user_weight.update(user_weight_params.except(:date_part, :time_part))
-      redirect_to mypage_path, notice: '体重が正常に更新されました。'
+      redirect_to user_weights_path, notice: '体重が正常に更新されました。'
     else
       render :edit, status: :unprocessable_entity
     end
