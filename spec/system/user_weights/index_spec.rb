@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "体重の記録ページ", type: :system do
+RSpec.describe "体重の一覧ページ", type: :system do
   let(:user) { create(:user) }
   let!(:user_weights) { create(:user_weight, user: user) }
 
@@ -45,5 +45,5 @@ RSpec.describe "体重の記録ページ", type: :system do
     it "「体重の記録がありません」というメッセージが表示されること" do
       expect(page).to have_content("体重の記録がありません")
     end
-  end  
+  end
 end
