@@ -68,4 +68,10 @@ RSpec.describe User, type: :model do
     dog2 = create(:dog, user: user)
     expect(user.dogs).to include(dog1, dog2)
   end
+
+  it '複数のUserWeightと関連があること' do
+    user_weight1 = create(:user_weight, user: user)
+    user_weight2 = create(:user_weight, user: user)
+    expect(user.user_weights).to include(user_weight1, user_weight2)
+  end
 end

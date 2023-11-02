@@ -21,7 +21,7 @@ RSpec.describe "愛犬登録ページ", type: :system do
     expect(page).to have_selector "input[type='submit']"
   end
 
-  it "有効な愛犬情報で新規登録できること" do
+  it "有効な情報で新規登録できること" do
     fill_in "dog[name]", with: "ポチ"
     select "2021", from: "dog_birthday_1i"
     select "01", from: "dog_birthday_2i"
@@ -35,7 +35,7 @@ RSpec.describe "愛犬登録ページ", type: :system do
     expect(page).to have_content "ポチ"
   end
 
-  it "無効な愛犬情報では新規登録できないこと" do
+  it "無効な情報では新規登録できないこと" do
     fill_in "dog[name]", with: ""
     click_button "愛犬を登録"
 
