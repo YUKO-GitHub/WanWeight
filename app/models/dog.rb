@@ -1,5 +1,6 @@
 class Dog < ApplicationRecord
   belongs_to :user
+  has_one_attached :avatar
 
   enum sex: { unselected: 0, female: 1, male: 2 }
 
