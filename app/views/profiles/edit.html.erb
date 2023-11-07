@@ -34,6 +34,21 @@
                       <%= f.text_area :introduction, class:"block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-base sm:leading-6" %>
                     </div>
                   </div>
+
+                  <div class="sm:col-span-4">
+                    <%= f.label :avatar, "プロフィール画像", class: "block mb-4 text-lg font-bold leading-6" %>
+                    <div class="mt-4 mb-4 sm:max-w-md">
+                      <% if @user.avatar.present? %>
+                        <%= image_tag @user.avatar, class: "mb-4 w-36 h-36 object-cover rounded-md shadow-lg" %>
+                        <%= f.file_field :avatar, 
+                              class: "block w-full text-sm text-gray-900 file:mr-4 file:rounded-md file:border-0 file:py-1.5 file:px-4 file:text-sm file:font-semibold file:bg-gray-50 file:text-gray-700 hover:file:bg-gray-100" %>
+                      <% else %>
+                        <%= f.file_field :avatar, class: "hidden", id: "avatar_upload" %>
+                        <%= f.file_field :avatar, 
+                              class: "block w-full text-sm text-gray-900 file:mr-4 file:rounded-md file:border-0 file:py-1.5 file:px-4 file:text-sm file:font-semibold file:bg-gray-50 file:text-gray-700 hover:file:bg-gray-100" %>
+                      <% end %>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div class="flex items-center justify-end gap-x-6 border-t border-gray-900/10 px-4 py-4 sm:px-8">

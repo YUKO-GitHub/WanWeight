@@ -1,8 +1,8 @@
 <div x-data="{ isOpen: false }" class="absolute inset-x-0 top-0 z-50">
   <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
-    <div class="flex lg:flex-1">
+    <div class="flex items-center flex-1">
       <%= link_to root_path, class: "-m-1.5 p-1.5" do %>
-        <%= image_tag("https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600", alt: "", class: "h-8 w-auto") %>
+        <%= image_tag("https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600", alt: "Logo", class: "h-8 w-auto") %>
       <% end %>
     </div>
     <div class="flex lg:hidden">
@@ -12,17 +12,25 @@
         </svg>
       </button>
     </div>
-    <div class="hidden lg:flex lg:gap-x-12">
-      <%= link_to "体重管理", new_user_weight_path, class: "text-sm font-semibold leading-6 text-gray-900" %>
-      <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Features</a>
-      <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Marketplace</a>
-      <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Company</a>
-    </div>
-    <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-      <%= link_to "マイページ", mypage_path, class: "mr-4 text-sm font-semibold leading-6 text-gray-900" %>
-      <%= link_to "プロフィール", profiles_path, class: "mr-4 text-sm font-semibold leading-6 text-gray-900" %>
-      <%= link_to "設定", user_path, class: "mr-4 text-sm font-semibold leading-6 text-gray-900" %>
-      <%= link_to "ログアウト", destroy_user_session_path, class: "mr-4 text-sm font-semibold leading-6 text-gray-900", method: :delete, data: { turbo_method: :delete } %>
+    <div class="hidden lg:flex lg:items-center lg:space-x-4">
+      <button @click="isOpen = !isOpen" type="button" class="flex items-center">
+        <% if current_user.avatar.attached? %>
+          <%= image_tag(current_user.avatar, alt: "プロフィール画像", class: "inline-block h-12 w-12 rounded-md object-cover") %>
+        <% else %>
+          <span class="inline-block h-14 w-14 overflow-hidden rounded-md bg-gray-100">
+            <svg class="h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
+            </svg>
+          </span>
+        <% end %>
+        <span class="ml-3"><%= current_user.name %></span>
+      </button>
+      <div x-show="isOpen" x-cloak @click.away="isOpen = false" class="absolute top-20 right-5 mt-0 py-2 w-48 bg-white bg-opacity-50 rounded-md shadow-xl z-20">
+        <%= link_to "マイページ", mypage_path, class: "block px-4 py-2 text-gray-800 hover:bg-gray-200" %>
+        <%= link_to "プロフィール", profiles_path, class: "block px-4 py-2 text-gray-800 hover:bg-gray-200" %>
+        <%= link_to "設定", user_path, class: "block px-4 py-2 text-gray-800 hover:bg-gray-200" %>
+        <%= link_to "ログアウト", destroy_user_session_path, method: :delete, data: { turbo_method: :delete }, class: "block px-4 py-2 text-gray-800 hover:bg-gray-200" %>
+      </div>
     </div>
   </nav>
 
@@ -43,13 +51,12 @@
       <div class="mt-6 flow-root">
         <div class="-my-6 divide-y divide-gray-500/10">
           <div class="space-y-2 py-6">
-            <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Product</a>
-            <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Features</a>
-            <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Marketplace</a>
-            <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Company</a>
+            <%= link_to "体重を記録する", new_user_weight_path, class: "-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50" %>
           </div>
           <div class="py-6">
             <%= link_to "マイページ", mypage_path, class: "-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50" %>
+            <%= link_to "プロフィール", profiles_path, class: "-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50" %>
+            <%= link_to "設定", user_path, class: "-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50" %>
             <%= link_to "ログアウト", destroy_user_session_path,
                 class: "-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50", 
                 method: :delete, data: { turbo_method: :delete } %>
