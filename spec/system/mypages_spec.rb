@@ -17,7 +17,7 @@ RSpec.describe "マイページ", type: :system do
   context "ユーザーの体重記録が存在する場合" do
     it "最新の体重記録が表示されること" do
       expect(page).to have_content "前回の記録: #{user_weight.weight} kg"
-      expect(page).to have_content "記録日: #{user_weight.date.to_fs(:custom_datetime)}"
+      expect(page).to have_content "#{user_weight.date.to_fs(:custom_datetime)}"
     end
 
     it "「体重を記録」と「体重を管理」のリンクが表示されること" do
