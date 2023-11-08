@@ -45,7 +45,7 @@ RSpec.describe "UserWeightsController", type: :request do
           user_weight: {
             weight: nil,
             date_part: Faker::Date.between(from: Date.current.beginning_of_month, to: Date.current.end_of_month).to_s,
-            time_part: '12:00:00',  # あるいは適切な時間を設定してください
+            time_part: '12:00:00',
           },
         }
       end
