@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   let(:user) { create(:user) }
-  let(:large_image) { fixture_file_upload(Rails.root.join('spec', 'fixtures', 'files', 'large_avatar.jpg'), 'image/jpeg') }
-  let(:invalid_format_image) { fixture_file_upload(Rails.root.join('spec', 'fixtures', 'files', 'invalid_avatar.svg'), 'image/svg') }
+  let(:large_image) { fixture_file_upload(Rails.root.join('spec/fixtures/files/large_avatar.jpg'), 'image/jpeg') }
+  let(:invalid_format_image) { fixture_file_upload(Rails.root.join('spec/fixtures/files/invalid_avatar.svg'), 'image/svg') }
 
   it '名前がなければ無効な状態であること' do
     user.name = nil
