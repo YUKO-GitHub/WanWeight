@@ -4,14 +4,21 @@ RSpec.describe "マイページ", type: :system do
   let(:user) { create(:user) }
   let!(:user_weight) { create(:user_weight, user: user) }
   let!(:dog) { create(:dog, user: user) }
+  let(:avatar) { fixture_file_upload(Rails.root.join('spec/fixtures/files/sample_user.jpg'), 'image/jpeg') }
+  let(:dog_avatar) { fixture_file_upload(Rails.root.join('spec/fixtures/files/sample_dog.jpg'), 'image/jpeg') }
 
   before do
     sign_in user
+    user.avatar.attach(avatar)
     visit mypage_path
   end
 
   it "正しいタイトルが表示されること" do
     expect(page).to have_title page_title('マイページ')
+  end
+
+  it "プロフィール画像が表示されること" do
+    expect(page).to have_selector("img[src$='sample_user.jpg']")
   end
 
   context "ユーザーの体重記録が存在する場合" do
@@ -52,6 +59,11 @@ RSpec.describe "マイページ", type: :system do
   end
 
   context "愛犬が登録されている場合" do
+    before do
+      dog.avatar.attach(dog_avatar)
+      visit mypage_path
+    end
+
     it "愛犬のプロフィールカードが表示されること" do
       expect(page).to have_content dog.name
       expect(page).to have_content dog.birthday
@@ -59,6 +71,10 @@ RSpec.describe "マイページ", type: :system do
       expect(page).to have_content dog.breed if dog.breed.present?
       expect(page).to have_link "編集", href: edit_dog_path(dog)
       expect(page).to have_link "削除", href: dog_path(dog)
+    end
+
+    it "愛犬のプロフィール画像が表示されること" do
+      expect(page).to have_selector("img[src$='sample_dog.jpg']")
     end
   end
 end

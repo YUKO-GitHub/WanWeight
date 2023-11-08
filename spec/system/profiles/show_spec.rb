@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "プロフィールページ", type: :system do
   let(:user) { create(:user) }
-  let!(:avatar) { fixture_file_upload(Rails.root.join('spec/fixtures/files/sample_user.jpg'), 'image/jpeg') }
+  let(:avatar) { fixture_file_upload(Rails.root.join('spec/fixtures/files/sample_user.jpg'), 'image/jpeg') }
 
   before do
     sign_in user
