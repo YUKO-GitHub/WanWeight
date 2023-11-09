@@ -18,6 +18,7 @@ RSpec.describe "愛犬登録ページ", type: :system do
     expect(page).to have_selector "select[name='dog[birthday(1i)]']"
     expect(page).to have_selector "select[name='dog[sex]']"
     expect(page).to have_selector "input[name='dog[breed]']"
+    expect(page).to have_selector "input[type='file']"
     expect(page).to have_selector "input[type='submit']"
   end
 
@@ -28,6 +29,7 @@ RSpec.describe "愛犬登録ページ", type: :system do
     select "01", from: "dog_birthday_3i"
     select "男の子", from: "dog_sex"
     fill_in "dog[breed]", with: "シーズー"
+    attach_file "dog[avatar]", Rails.root.join('spec/fixtures/files/sample_dog.jpg')
     click_button "愛犬を登録"
 
     expect(current_path).to eq mypage_path
