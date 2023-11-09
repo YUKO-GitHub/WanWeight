@@ -1,0 +1,2 @@
+module DogWeightsHelper
+end
