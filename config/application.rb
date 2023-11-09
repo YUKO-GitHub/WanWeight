@@ -37,5 +37,6 @@ module WanWeight
     end
 
     config.generators.system_tests = nil
+    config.active_storage.variant_processor = :image_processing
   end
 end

@@ -16,6 +16,14 @@ class User < ApplicationRecord
   validates :email, length: { maximum: 255 }, uniqueness: { case_sensitive: false }
   validates :password, format: { with: VALID_PASSWORD_REGEX, message: 'は半角英数を両方含む必要があります' }, if: :password_present?
   validates :introduction, length: { maximum: 50 }
+  validates :avatar, content_type: {
+                       in: ['image/png', 'image/jpg', 'image/jpeg'],
+                       message: 'はPNG、JPG、JPEG形式でアップロードしてください',
+                     },
+                     size: {
+                       less_than: 5.megabytes,
+                       message: 'のサイズは5MB以下にしてください',
+                     }
 
   private
 

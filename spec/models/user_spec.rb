@@ -2,6 +2,8 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   let(:user) { create(:user) }
+  let(:large_image) { fixture_file_upload(Rails.root.join('spec/fixtures/files/large_avatar.jpg'), 'image/jpeg') }
+  let(:invalid_format_image) { fixture_file_upload(Rails.root.join('spec/fixtures/files/invalid_avatar.svg'), 'image/svg') }
 
   it '名前がなければ無効な状態であること' do
     user.name = nil
@@ -61,6 +63,18 @@ RSpec.describe User, type: :model do
     user.email = 'EXAMPLE@EXAMPLE.COM'
     user.save!
     expect(user.reload.email).to eq('example@example.com')
+  end
+
+  it '5MBを超える画像は無効であること' do
+    user.avatar.attach(large_image)
+    expect(user).to_not be_valid
+    expect(user.errors[:avatar]).to include('のサイズは5MB以下にしてください')
+  end
+
+  it '許可されていないファイル形式は無効であること' do
+    user.avatar.attach(invalid_format_image)
+    expect(user).to_not be_valid
+    expect(user.errors[:avatar]).to include('はPNG、JPG、JPEG形式でアップロードしてください')
   end
 
   it '複数のDogと関連があること' do
