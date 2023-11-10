@@ -34,7 +34,7 @@ class DogWeightsController < ApplicationController
   def update
     combine_date_and_time
     if @dog_weight.update(dog_weight_params.except(:date_part, :time_part))
-      redirect_to dog_weights_path(@dog), notice: '愛犬の体重が正常に更新されました。'
+      redirect_to dog_dog_weights_path(@dog), notice: '愛犬の体重が正常に更新されました。'
     else
       render :edit, status: :unprocessable_entity
     end
@@ -42,7 +42,7 @@ class DogWeightsController < ApplicationController
 
   def destroy
     @dog_weight.destroy
-    redirect_to dog_weights_path(@dog), notice: '愛犬の体重が正常に削除されました。'
+    redirect_to dog_dog_weights_path(@dog), notice: '愛犬の体重が正常に削除されました。'
   end
 
   private
