@@ -22,7 +22,7 @@ class DogWeightsController < ApplicationController
   def create
     combine_date_and_time
     if @dog_weight.save
-      redirect_to dog_path(@dog), notice: '愛犬の体重が正常に記録されました。'
+      redirect_to mypage_path, notice: '愛犬の体重が正常に記録されました。'
     else
       render :new, status: :unprocessable_entity
     end

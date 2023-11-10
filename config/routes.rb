@@ -21,6 +21,8 @@ Rails.application.routes.draw do
     delete 'sign_out', to: 'users/sessions#destroy', as: 'destroy_user_session'
   end
 
-  resources :dogs
   resources :user_weights
+  resources :dogs do
+    resources :dog_weights
+  end
 end

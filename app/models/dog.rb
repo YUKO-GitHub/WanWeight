@@ -16,4 +16,13 @@ class Dog < ApplicationRecord
                        less_than: 5.megabytes,
                        message: 'のサイズは5MB以下にしてください',
                      }
+
+  def latest_weight
+    dog_weights.order(date: :desc).first
+  end
+
+  def weights_for_month(start_date, end_date)
+    dog_weights.where(date: start_date.beginning_of_day..end_date.end_of_day)
+                .map { |weight| [weight.date.to_date, weight.weight] }.to_h
+  end
 end
