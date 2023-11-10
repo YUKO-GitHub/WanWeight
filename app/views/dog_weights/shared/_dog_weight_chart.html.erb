@@ -1,0 +1,30 @@
+<div class="w-full p-4 bg-gray-100">
+  <%= line_chart dog_weight, 
+    height: "250px", 
+    library: { 
+      title: "直近1ヶ月の体重推移", 
+      scales: { 
+        y: { 
+          min: [0, (latest_weight.weight - 5).floor].max,
+          max: (latest_weight.weight + 5).ceil,
+          ticks: {
+            stepSize: 0.01
+          }
+        },
+        x: { 
+          type: 'time',
+          time: {
+            unit: 'day',
+            displayFormats: {
+              day: 'MM/dd'
+            },
+            tooltipFormat: 'MM/dd'
+          },
+          ticks: {
+            source: 'data'
+          }
+        }
+      } 
+    }
+  %>
+</div>
