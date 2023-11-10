@@ -35,12 +35,14 @@
       </div>
     </div>              
   
-    <% if @dogs.blank? %>
+    <% if @dogs_with_weights.blank? %>
       <p>まだ愛犬は登録されていません。</p>
       <%= link_to '愛犬を登録する', new_dog_path, class: "btn btn-primary" %>
     <% else %>
-      <% @dogs.each do |dog| %>
-        <% latest_dog_weight = dog.latest_weight %>
+      <% @dogs_with_weights.each do |dog_with_weight| %>
+        <% dog = dog_with_weight[:dog] %>
+        <% latest_dog_weight = dog_with_weight[:latest_weight] %>
+        <% dog_weights_for_month = dog_with_weight[:weights_for_month] %>
         <div class="flex flex-col md:flex-row bg-white mt-6 mx-2 border border-gray-100 rounded-lg p-6 shadow-md">
           <div class="w-full md:w-1/2 pb-4 flex">
             <% if dog.avatar.present? %>
@@ -73,8 +75,8 @@
             </div>
           </div>
           <div class="w-full md:w-1/2 p-4 bg-gray-100">
-            <% if dog[:latest_weight].present? %>
-              <%= render 'mypages/shared/dog_weight_chart', dog_weight: dog[:weights_for_month], latest_weight: dog[:latest_weight] %>
+            <% if latest_dog_weight.present? %>
+              <%= render 'mypages/shared/dog_weight_chart', dog_weight: dog_weights_for_month, latest_weight: latest_dog_weight %>
             <% else %>
               <p>体重の記録がありません</p>
             <% end %>
@@ -82,6 +84,5 @@
         </div>      
       <% end %>
     <% end %>
-
   </div>
 </div>
