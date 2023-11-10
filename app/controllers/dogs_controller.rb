@@ -3,13 +3,22 @@ class DogsController < ApplicationController
   before_action :set_dog, only: [:show, :edit, :update, :destroy]
 
   def new
-    @dog = current_user.dogs.build
+    if current_user.dogs.count >= 3
+      redirect_to mypage_path, alert: '登録できる愛犬は3匹までです。'
+    else
+      @dog = current_user.dogs.build
+    end
   end
 
   def show
   end
 
   def create
+    if current_user.dogs.count >= 3
+      redirect_to mypage_path, alert: '登録できる愛犬は3匹までです。'
+      return
+    end
+
     @dog = current_user.dogs.build(dog_params)
     if @dog.save
       redirect_to mypage_path, notice: '愛犬を登録しました'

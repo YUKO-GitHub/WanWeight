@@ -16,6 +16,13 @@ class Dog < ApplicationRecord
                        less_than: 5.megabytes,
                        message: 'のサイズは5MB以下にしてください',
                      }
+  validate :dog_limit, on: :create
+
+  def dog_limit
+    if user && user.dogs.count >= 3
+      errors.add(:user, "は3匹までの愛犬しか登録できません")
+    end
+  end
 
   def latest_weight
     dog_weights.order(date: :desc).first
