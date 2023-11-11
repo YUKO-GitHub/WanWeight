@@ -5,7 +5,7 @@ class Dog < ApplicationRecord
 
   enum sex: { unselected: 0, female: 1, male: 2 }
 
-  validates :name, presence: true
+  validates :name, presence: true, length: { maximum: 10 }
   validates :birthday, presence: true
   validates :sex, inclusion: { in: Dog.sexes.keys }
   validates :avatar, content_type: {
