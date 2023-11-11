@@ -11,11 +11,11 @@ class User < ApplicationRecord
 
   VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i
 
-  validates :name, presence: true, length: { maximum: 50 }
+  validates :name, presence: true, length: { maximum: 20 }
   validates :birthday, presence: true
   validates :email, length: { maximum: 255 }, uniqueness: { case_sensitive: false }
   validates :password, format: { with: VALID_PASSWORD_REGEX, message: 'は半角英数を両方含む必要があります' }, if: :password_present?
-  validates :introduction, length: { maximum: 50 }
+  validates :introduction, length: { maximum: 100 }
   validates :avatar, content_type: {
                        in: ['image/png', 'image/jpg', 'image/jpeg'],
                        message: 'はPNG、JPG、JPEG形式でアップロードしてください',

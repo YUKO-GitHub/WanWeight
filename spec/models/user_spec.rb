@@ -29,10 +29,10 @@ RSpec.describe User, type: :model do
     expect(user.errors[:password]).to include("を入力してください")
   end
 
-  it '名前が50文字以内であること' do
-    user.name = 'a' * 51
+  it '名前が20文字以内であること' do
+    user.name = 'a' * 21
     expect(user).to_not be_valid
-    expect(user.errors[:name]).to include('は50文字以内で入力してください')
+    expect(user.errors[:name]).to include('は20文字以内で入力してください')
   end
 
   it 'メールアドレスが255文字以内であること' do
@@ -41,10 +41,10 @@ RSpec.describe User, type: :model do
     expect(user.errors[:email]).to include('は255文字以内で入力してください')
   end
 
-  it '自己紹介が50文字以内であること' do
-    user.introduction = 'a' * 51
+  it '自己紹介100文字以内であること' do
+    user.introduction = 'a' * 101
     expect(user).to_not be_valid
-    expect(user.errors[:introduction]).to include('は50文字以内で入力してください')
+    expect(user.errors[:introduction]).to include('は100文字以内で入力してください')
   end
 
   it 'メールアドレスが重複しないこと' do
