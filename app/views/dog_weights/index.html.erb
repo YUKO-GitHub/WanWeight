@@ -14,7 +14,7 @@
       </div>
     </div>
     <% if @dog_weights_for_graph.present? %>
-    <%= link_to "体重を記録する", new_dog_dog_weight_path, class:"text-md font-semibold leading-6 text-indigo-600 hover:text-indigo-500" %>
+      <%= link_to "体重を記録する", new_dog_dog_weight_path, class:"text-md font-semibold leading-6 text-indigo-600 hover:text-indigo-500" %>
       <%= render 'dog_weights/shared/dog_weight_chart', dog_weight: @dog_weights_for_graph, latest_weight: @latest_dog_weight %>
     <% else %>
       <p>体重の記録がありません</p>
