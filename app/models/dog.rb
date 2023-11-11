@@ -29,7 +29,7 @@ class Dog < ApplicationRecord
   end
 
   def weights_for_month(start_date, end_date)
-    dog_weights.where(date: start_date.beginning_of_day..end_date.end_of_day)
-                .map { |weight| [weight.date.to_date, weight.weight] }.to_h
+    dog_weights.where(date: start_date.beginning_of_day..end_date.end_of_day).
+      map { |weight| [weight.date.to_date, weight.weight] }.to_h
   end
 end
