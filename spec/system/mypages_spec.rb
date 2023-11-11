@@ -53,7 +53,7 @@ RSpec.describe "マイページ", type: :system do
     let!(:dog) { nil }
 
     it "「愛犬を登録する」リンクが表示されること" do
-      expect(page).to have_content "まだ愛犬は登録されていません。"
+      expect(page).to have_content "まだ愛犬は登録されていません"
       expect(page).to have_link "愛犬を登録する", href: new_dog_path
     end
   end

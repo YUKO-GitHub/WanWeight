@@ -18,7 +18,7 @@ RSpec.describe "プロフィールページ", type: :system do
     expect(page).to have_content "プロフィール"
     within "turbo-frame#profile" do
       expect(page).to have_content user.name
-      expect(page).to have_content user.birthday
+      expect(page).to have_content "#{user.birthday.to_fs(:custom_date)}"
       expect(page).to have_content user.introduction
       expect(page).to have_link "編集", href: profiles_edit_path
     end
