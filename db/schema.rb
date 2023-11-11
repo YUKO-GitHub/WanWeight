@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_02_065246) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_09_080805) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,13 +42,21 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_02_065246) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "dog_weights", force: :cascade do |t|
+    t.bigint "dog_id", null: false
+    t.float "weight", null: false
+    t.datetime "date", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["dog_id"], name: "index_dog_weights_on_dog_id"
+  end
+
   create_table "dogs", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.string "name"
-    t.date "birthday"
+    t.string "name", null: false
+    t.date "birthday", null: false
     t.integer "sex"
     t.string "breed"
-    t.string "profile_image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_dogs_on_user_id"
@@ -56,8 +64,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_02_065246) do
 
   create_table "user_weights", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.float "weight"
-    t.datetime "date"
+    t.float "weight", null: false
+    t.datetime "date", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_user_weights_on_user_id"
@@ -69,18 +77,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_02_065246) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.string "name"
-    t.date "birthday"
+    t.string "name", null: false
+    t.date "birthday", null: false
     t.string "introduction"
-    t.string "profile_image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "height"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "dog_weights", "dogs"
   add_foreign_key "dogs", "users"
   add_foreign_key "user_weights", "users"
 end

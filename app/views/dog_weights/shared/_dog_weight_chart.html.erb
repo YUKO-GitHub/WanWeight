@@ -1,13 +1,14 @@
-<%= line_chart user_weight, 
+<div class="w-full p-4 bg-gray-100">
+  <%= line_chart dog_weight, 
     height: "250px", 
     library: { 
       title: "直近1ヶ月の体重推移", 
       scales: { 
         y: { 
-          min: [0, (latest_weight.weight - 20).floor].max,
-          max: (latest_weight.weight + 20).ceil,
+          min: [0, (latest_weight.weight - 5).floor].max,
+          max: (latest_weight.weight + 5).ceil,
           ticks: {
-            stepSize: 0.1
+            stepSize: 0.01
           }
         },
         x: { 
@@ -25,4 +26,5 @@
         }
       } 
     }
-%>
+  %>
+</div>

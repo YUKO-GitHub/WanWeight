@@ -1,0 +1,49 @@
+<% provide(:title, "愛犬の体重記録") %>
+<div class="mt-6 py-10">
+  <div class="mx-auto max-w-7xl mt-6 px-4 sm:px-6 lg:px-8">
+    <%= link_to "← 戻る", mypage_path, class:"text-sm font-semibold leading-6 text-indigo-600 hover:text-indigo-500" %>
+    <h1 class="mt-4 text-3xl font-bold leading-tight tracking-tight text-gray-900"><%= @dog.name %>の体重記録</h1>
+  </div>
+
+  <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 mt-6">
+    <div class="flex justify-between items-center mb-4">
+      <div class="mb-4">
+        <%= form_with(url: dog_dog_weights_path(@dog), method: :get, local: true) do |f| %>
+          <%= f.select :date, date_options, { selected: "#{@year}-#{@month}" }, class: "mr-2", onchange: 'this.form.submit()' %>
+        <% end %>
+      </div>
+    </div>
+    <% if @dog_weights_for_graph.present? %>
+      <%= link_to "体重を記録する", new_dog_dog_weight_path, class:"text-md font-semibold leading-6 text-indigo-600 hover:text-indigo-500" %>
+      <%= render 'dog_weights/shared/dog_weight_chart', dog_weight: @dog_weights_for_graph, latest_weight: @latest_dog_weight %>
+    <% else %>
+      <p>体重の記録がありません</p>
+      <%= link_to "体重を記録する", new_dog_dog_weight_path, class:"text-sm font-semibold leading-6 text-indigo-600 hover:text-indigo-500" %>
+    <% end %>
+  </div>
+
+  <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 mt-6">
+    <table class="min-w-full bg-white border rounded text-sm md:text-base">
+      <thead>
+        <tr>
+          <th class="text-left px-4 py-2">日時</th>
+          <th class="text-left px-4 py-2">体重</th>
+          <th class="text-left px-4 py-2">アクション</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @dog_weights.each do |dog_weight| %>
+          <tr>
+            <td class="border px-4 py-2"><%= dog_weight.date.to_fs(:custom_datetime) %></td>
+            <td class="border px-4 py-2"><%= dog_weight.weight %> kg</td>
+            <td class="border px-4 py-2">
+              <%= link_to '編集', edit_dog_dog_weight_path(@dog, dog_weight) %> |
+              <%= link_to '削除', dog_dog_weight_path(@dog, dog_weight), 
+                  data: { turbo_method: :delete, turbo_confirm: "本当に削除してよろしいですか？" } %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
