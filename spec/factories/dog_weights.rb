@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :dog_weight do
-    dog { nil }
-    weight { 1.5 }
-    date { "2023-11-09 14:15:08" }
+    weight { rand(5.0..50.0).round(1) }
+    date { Faker::Date.between(from: Date.current.beginning_of_month, to: Date.current.end_of_month) }
+    association :dog
   end
 end

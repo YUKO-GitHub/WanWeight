@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe UserWeight, type: :model do
   let(:user_weight) { create(:user_weight) }
 
-  it 'ユーザーと関連があること' do
+  it 'Userモデルと関連があること' do
     expect(user_weight).to respond_to(:user)
   end
 

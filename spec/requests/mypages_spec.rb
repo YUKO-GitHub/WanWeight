@@ -4,6 +4,7 @@ RSpec.describe "MypagesController", type: :request do
   let(:user) { create(:user) }
   let!(:user_weight) { create(:user_weight, user: user) }
   let!(:dog) { create(:dog, user: user) }
+  let!(:dog_weight) { create(:dog_weight, dog: dog) }
 
   describe "GET /show" do
     context "ログイン済みの場合" do
@@ -24,9 +25,14 @@ RSpec.describe "MypagesController", type: :request do
         expect(response.body).to include dog.breed if dog.breed.present?
       end
 
-      it "体重記録がレスポンスに含まれていること" do
+      it "ユーザーの体重記録がレスポンスに含まれていること" do
         expect(response.body).to include user_weight.weight.to_s
         expect(response.body).to include user_weight.date.to_fs(:custom_datetime)
+      end
+
+      it "愛犬の体重記録がレスポンスに含まれていること" do
+        expect(response.body).to include dog_weight.weight.to_s
+        expect(response.body).to include dog_weight.date.to_fs(:custom_datetime)
       end
     end
 

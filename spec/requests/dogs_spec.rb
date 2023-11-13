@@ -46,7 +46,7 @@ RSpec.describe DogsController, type: :request do
   describe "PATCH /update" do
     context "パラメーターが有効な場合" do
       it "mypageへリダイレクトされること" do
-        patch dog_path(dog), params: { dog: { name: "UpdatedName" } }
+        patch dog_path(dog), params: { dog: { name: "OtherName" } }
         expect(response).to redirect_to(mypage_path)
       end
     end

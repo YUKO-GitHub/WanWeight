@@ -64,8 +64,10 @@ class DogWeightsController < ApplicationController
   end
 
   def combine_date_and_time
-    date = Date.parse(params[:dog_weight][:date_part])
-    time = Time.zone.parse(params[:dog_weight][:time_part])
-    @dog_weight.date = Time.zone.local(date.year, date.month, date.day, time.hour, time.min, time.sec)
+    if params[:dog_weight][:date_part].present? && params[:dog_weight][:time_part].present?
+      date = Date.parse(params[:dog_weight][:date_part])
+      time = Time.zone.parse(params[:dog_weight][:time_part])
+      @dog_weight.date = Time.zone.local(date.year, date.month, date.day, time.hour, time.min, time.sec)
+    end
   end
 end
