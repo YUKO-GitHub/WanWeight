@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "体重の一覧ページ", type: :system do
-  let(:user) { create(:user) }
+  let!(:user) { create(:user) }
   let!(:user_weights) { create(:user_weight, user: user) }
 
   before do
