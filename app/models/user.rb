@@ -2,6 +2,7 @@ class User < ApplicationRecord
   before_save :downcase_email
   has_many :dogs, dependent: :destroy
   has_many :user_weights, dependent: :destroy
+  has_many :diaries, dependent: :destroy
   has_one_attached :avatar
 
   # Include default devise modules. Others available are:

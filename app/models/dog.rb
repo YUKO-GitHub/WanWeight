@@ -1,6 +1,7 @@
 class Dog < ApplicationRecord
   belongs_to :user
   has_many :dog_weights, dependent: :destroy
+  has_many :diaries, dependent: :destroy
   has_one_attached :avatar
 
   enum sex: { unselected: 0, female: 1, male: 2 }
