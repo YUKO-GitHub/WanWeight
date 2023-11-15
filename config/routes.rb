@@ -25,4 +25,5 @@ Rails.application.routes.draw do
   resources :dogs do
     resources :dog_weights
   end
+  resources :diaries
 end
