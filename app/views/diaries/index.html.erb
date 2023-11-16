@@ -37,8 +37,16 @@
             </div>
           </div>
           <div class="mt-2 pt-2 border-t border-gray-200 text-sm text-gray-700">
-            <%= truncate(diary.diary_text, length: 50) %>
-          </div>          
+            <% if diary.diary_text.present? %>
+              <%= truncate(diary.diary_text, length: 50) %>
+            <% elsif diary.meal_text.present? %>
+              <%= truncate(diary.meal_text, length: 50) %>
+            <% elsif diary.exercise_text.present? %>
+              <%= truncate(diary.exercise_text, length: 50) %>
+            <% elsif diary.health_text.present? %>
+              <%= truncate(diary.health_text, length: 50) %>
+            <% end %>
+          </div>           
           <!-- 日記の画像 -->
           <% if diary.photos.attached? %>
             <div class="flex-shrink-0 ml-3 mt-2">

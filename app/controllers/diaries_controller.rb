@@ -10,7 +10,7 @@ class DiariesController < ApplicationController
   end
 
   def new
-    @diary = Diary.new
+    @diary = Diary.new(date: Date.current)
     @dog_options = dogs_for_select
   end
 
