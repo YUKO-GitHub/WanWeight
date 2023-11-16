@@ -1,49 +1,48 @@
 <% provide(:title, "日記一覧") %>
 <div class="mt-6 py-10">
   <div class="mx-auto max-w-7xl mt-6 px-4 sm:px-6 lg:px-8">
-    <%= link_to "← 戻る", mypage_path, class:"text-sm font-semibold leading-6 text-indigo-600 hover:text-indigo-500" %>
+    <%= link_to "← 戻る", mypage_path, class: "text-sm font-semibold leading-6 text-indigo-600 hover:text-indigo-500" %>
     <h1 class="mt-4 text-3xl font-bold leading-tight tracking-tight text-gray-900">日記一覧</h1>
   </div>
 
   <div class="mx-auto max-w-7xl flex justify-between mb-4 px-2 sm:px-6 lg:px-8 mt-6">
-    <!-- セレクトボックスで年月を選択する -->
     <%= form_with(url: diaries_path, method: :get, local: true) do |f| %>
       <%= f.select :date, options_for_select(date_options, "#{@year}-#{@month}"), onchange: 'this.form.submit()', class: "select select-bordered w-full max-w-xs" %>
     <% end %>
   </div>
 
-  <!-- 日記のカード一覧 -->
-  <div class="grid gap-6">
+  <div class="mx-auto max-w-7xl grid gap-6 px-2 sm:px-6 lg:px-8">
     <% if @diaries.present? %>
       <% @diaries.each do |diary| %>
-        <div class="bg-white rounded-lg shadow-md p-4 flex items-center">
-          <!-- 日付と曜日 -->
-          <div class="flex-shrink-0 mr-3">
-            <div class="text-xl font-semibold text-red-500">
-              <%= diary.date.strftime('%-d') %>
-            </div>
-            <div class="text-sm text-gray-500">
-              <%= t('date.abbr_day_names')[diary.date.wday] %>
-            </div>
-          </div>
-          <!-- ユーザーまたは愛犬のアイコン画像と名前 -->
-          <div class="flex-grow flex items-center">
-            <% icon_image = diary.dog.present? ? diary.dog.icon : diary.user.icon %>
-            <% icon_name = diary.dog.present? ? diary.dog.name : diary.user.name %>
-            <%= image_tag(icon_image, alt: icon_name, class: "h-10 w-10 rounded-full mr-3") if icon_image.present? %>
-            <div>
-              <div class="text-lg font-medium">
-                <%= icon_name %>
+        <div class="bg-white rounded-lg shadow-md p-4">
+          <div class="flex items-start">
+            <!-- 日付と曜日 -->
+            <div class="flex-shrink-0 mr-3">
+              <div class="text-xl font-semibold text-red-500">
+                <%= diary.date.strftime('%-d') %>
               </div>
-              <div class="text-sm text-gray-700">
-                <%= truncate(diary.diary_text, length: 50) %>
+              <div class="text-sm text-gray-500">
+                <%= t('date.abbr_day_names')[diary.date.wday] %>
               </div>
             </div>
+            <!-- アバター画像と名前 -->
+            <div class="flex-grow flex items-center">
+              <% if diary.dog.present? && diary.dog.avatar.attached? %>
+                <%= image_tag(url_for(diary.dog.avatar), alt: diary.dog.name, class: "h-8 w-8 object-cover rounded-md mr-2") %>
+                <div class="text-sm font-medium"><%= diary.dog.name %></div>
+              <% elsif diary.user.avatar.attached? %>
+                <%= image_tag(url_for(diary.user.avatar), alt: diary.user.name, class: "h-8 w-8 object-cover rounded-md mr-2") %>
+                <div class="text-sm font-medium"><%= diary.user.name %></div>
+              <% end %>
+            </div>
           </div>
+          <div class="mt-2 pt-2 border-t border-gray-200 text-sm text-gray-700">
+            <%= truncate(diary.diary_text, length: 50) %>
+          </div>          
           <!-- 日記の画像 -->
-          <% if diary.photos.any? %>
-            <div class="flex-shrink-0 ml-3">
-              <%= image_tag(diary.photos.first.image, alt: "日記の画像", class: "h-16 w-16 object-cover rounded-md") %>
+          <% if diary.photos.attached? %>
+            <div class="flex-shrink-0 ml-3 mt-2">
+              <%= image_tag(url_for(diary.photos.first), alt: "日記の画像", class: "h-16 w-16 object-cover rounded-md") %>
             </div>
           <% end %>
         </div>
