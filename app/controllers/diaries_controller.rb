@@ -30,9 +30,16 @@ class DiariesController < ApplicationController
   end
 
   def edit
+    @dog_options = dogs_for_select
   end
 
   def update
+    if @diary.update(diary_params)
+      redirect_to diaries_path, notice: '日記が正常に更新されました。'
+    else
+      @dog_options = dogs_for_select
+      render :edit
+    end
   end
 
   def destroy
