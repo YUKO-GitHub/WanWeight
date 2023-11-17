@@ -1,4 +1,28 @@
-<div>
-  <h1 class="font-bold text-4xl">Diaries#show</h1>
-  <p>Find me in app/views/diaries/show.html.erb</p>
+<% provide(:title, "#{@diary_title}の日記") %>
+<div class="flex min-h-full flex-col justify-center py-12 sm:px-6 lg:px-8">
+  <div class="sm:mx-auto sm:w-full sm:max-w-md">
+    <h2 class="mt-6 text-center text-3xl font-bold leading-9 tracking-tight text-gray-900"><%= @diary_title %>の日記</h2>
+    <p class="text-center text-lg text-gray-600"><%= @diary.date.to_fs(:custom_date) %></p>
+  </div>
+
+  <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+    <%= link_to "← 戻る", diaries_path, class: "text-sm font-semibold leading-6 text-indigo-600 hover:text-indigo-500" %>
+    <div class="bg-white py-8 px-6 shadow sm:rounded-lg sm:px-10">
+      <% ['diary_text', 'meal_text', 'exercise_text', 'health_text'].each do |field| %>
+        <h3 class="text-md font-medium mt-4"><%= Diary.human_attribute_name(field) %></h3>
+        <div class="mb-4 text-sm border border-gray-200 p-4 rounded">
+          <%= @diary[field].presence || 'なし' %>
+        </div>
+      <% end %>
+
+      <% if @diary.photos.attached? %>
+        <div class="border border-gray-200 p-2 rounded mt-4">
+          <strong>写真:</strong>
+          <% @diary.photos.each do |photo| %>
+            <%= image_tag(url_for(photo), class: "h-20 w-20 object-cover mt-2") %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>

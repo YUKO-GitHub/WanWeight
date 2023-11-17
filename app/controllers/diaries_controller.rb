@@ -1,6 +1,7 @@
 class DiariesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_date_range, only: :index
+  before_action :set_diary, only: [:show, :edit, :update, :destroy]
 
   def index
     @diaries = Diary.where(user: current_user)
@@ -25,6 +26,7 @@ class DiariesController < ApplicationController
   end
 
   def show
+    @diary_title = @diary.dog.present? ? @diary.dog.name : @diary.user.name
   end
 
   def edit
@@ -40,6 +42,10 @@ class DiariesController < ApplicationController
 
   def diary_params
     params.require(:diary).permit(:dog_id, :date, :diary_text, :meal_text, :exercise_text, :health_text, photos: [])
+  end
+
+  def set_diary
+    @diary = current_user.diaries.find(params[:id])
   end
 
   def set_date_range

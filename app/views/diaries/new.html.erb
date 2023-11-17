@@ -18,7 +18,7 @@
         </div>
 
         <div class="mt-6">
-          <%= f.label :diary_text, "日々の記録", class: "block text-sm font-medium text-gray-700" %>
+          <%= f.label :diary_text, "出来事", class: "block text-sm font-medium text-gray-700" %>
           <%= f.text_area :diary_text,
                 rows: 4,
                 placeholder: "今日の出来事を記録しましょう",
@@ -26,7 +26,7 @@
         </div>
 
         <div class="mt-6">
-          <%= f.label :meal_text, "食事の記録", class: "block text-sm font-medium text-gray-700" %>
+          <%= f.label :meal_text, "食事", class: "block text-sm font-medium text-gray-700" %>
           <%= f.text_area :meal_text,
                 rows: 3,
                 placeholder: "今日食べたものを記録しましょう",
@@ -34,7 +34,7 @@
         </div>
 
         <div class="mt-6">
-          <%= f.label :exercise_text, "運動の記録", class: "block text-sm font-medium text-gray-700" %>
+          <%= f.label :exercise_text, "運動", class: "block text-sm font-medium text-gray-700" %>
           <%= f.text_area :exercise_text,
                 rows: 3,
                 placeholder: "今日の運動を記録しましょう",
@@ -42,7 +42,7 @@
         </div>
 
         <div class="mt-6">
-          <%= f.label :health_text, "健康の記録", class: "block text-sm font-medium text-gray-700" %>
+          <%= f.label :health_text, "健康", class: "block text-sm font-medium text-gray-700" %>
           <%= f.text_area :health_text,
                 rows: 3,
                 placeholder: "今日の体調を記録しましょう",
@@ -63,7 +63,7 @@
     </div>
 
     <div class="mt-6 text-center text-sm text-gray-500">
-      <%= link_to "キャンセル", diaries_path, class:"font-semibold leading-6 text-indigo-600 hover:text-indigo-500" %>
+      <%= link_to "キャンセル", :back, class:"font-semibold leading-6 text-indigo-600 hover:text-indigo-500" %>
     </div>
   </div>
 </div>

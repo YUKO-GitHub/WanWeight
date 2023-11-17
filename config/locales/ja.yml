@@ -13,6 +13,11 @@ ja:
         sex: 性別
         breed: 犬種
         avatar: 画像
+      diary:
+        diary_text: 出来事
+        meal_text: 食事
+        exercise_text: 運動
+        health_text: 健康
     enums:
       dog:
         sex:
