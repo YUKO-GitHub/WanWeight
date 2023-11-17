@@ -43,6 +43,8 @@ class DiariesController < ApplicationController
   end
 
   def destroy
+    @diary.destroy
+    redirect_to diaries_path, notice: '日記が正常に削除されました。'
   end
 
   private
