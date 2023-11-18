@@ -17,11 +17,12 @@ class DiariesController < ApplicationController
 
   def create
     @diary = current_user.diaries.build(diary_params)
+
     if @diary.save
       redirect_to diaries_path, notice: '日記が正常に作成されました。'
     else
       @dog_options = dogs_for_select
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -38,7 +39,7 @@ class DiariesController < ApplicationController
       redirect_to diaries_path, notice: '日記が正常に更新されました。'
     else
       @dog_options = dogs_for_select
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 

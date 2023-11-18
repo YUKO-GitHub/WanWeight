@@ -7,6 +7,7 @@
   <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
     <div class="bg-white py-8 px-6 shadow sm:rounded-lg sm:px-10">
       <%= form_with model: @diary, url: diaries_path, local: true do |f| %>
+        <%= render 'diaries/shared/error_messages', diary: @diary %>
         <div>
           <%= f.label :dog_id, "日記の対象", class: "block text-sm font-medium text-gray-700" %>
           <%= f.select :dog_id, @dog_options, {}, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" %>
@@ -50,9 +51,9 @@
         </div>
 
         <div class="mt-6">
-          <%= f.label :photos, "写真をアップロード", class: "block text-sm font-medium text-gray-700" %>
+          <%= f.label :photos, "写真をアップロード （最大4枚まで）", class: "block text-sm font-medium text-gray-700" %>
           <%= f.file_field :photos, multiple: true, accept: 'image/*', 
-                class: "mt-2 block w-full text-sm text-gray-900 file:mr-4 file:rounded-md file:border-0 file:py-1.5 file:px-4 file:text-sm file:font-semibold file:bg-gray-100 file:text-gray-700 hover:file:bg-gray-200" %>
+                class: "mt-4 block w-full text-sm text-gray-900 file:mr-4 file:rounded-md file:border-0 file:py-1.5 file:px-4 file:text-sm file:font-semibold file:bg-gray-100 file:text-gray-700 hover:file:bg-gray-200" %>
         </div>
 
         <div class="mt-6">

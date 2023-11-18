@@ -16,8 +16,8 @@
       <% end %>
 
       <% if @diary.photos.attached? %>
-        <div class="border border-gray-200 p-2 rounded mt-4">
-          <strong>写真:</strong>
+        <h3>写真</h3>
+        <div class="border border-gray-200 p-2 rounded">
           <% @diary.photos.each do |photo| %>
             <%= image_tag(url_for(photo), class: "h-20 w-20 object-cover mt-2") %>
           <% end %>

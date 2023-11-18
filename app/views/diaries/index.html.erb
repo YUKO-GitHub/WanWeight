@@ -1,7 +1,7 @@
 <% provide(:title, "日記一覧") %>
 <div class="mt-6 py-10">
   <div class="mx-auto max-w-7xl mt-6 px-4 sm:px-6 lg:px-8">
-    <%= link_to "← 戻る", mypage_path, class: "text-sm font-semibold leading-6 text-indigo-600 hover:text-indigo-500" %>
+    <%= link_to "戻る", mypage_path, class: "text-sm font-semibold leading-6 text-indigo-600 hover:text-indigo-500" %>
     <h1 class="mt-4 text-3xl font-bold leading-tight tracking-tight text-gray-900">日記一覧</h1>
   </div>
 
@@ -22,7 +22,7 @@
                 <div class="text-xl font-semibold text-red-500">
                   <%= diary.date.strftime('%-d') %>
                 </div>
-                <div class="text-sm text-gray-500">
+                <div class="text-center text-sm text-gray-500">
                   <%= t('date.abbr_day_names')[diary.date.wday] %>
                 </div>
               </div>
@@ -50,7 +50,7 @@
             </div>           
             <!-- 日記の画像 -->
             <% if diary.photos.attached? %>
-              <div class="flex-shrink-0 ml-3 mt-2">
+              <div class="flex-shrink-0 mt-2">
                 <%= image_tag(url_for(diary.photos.first), alt: "日記の画像", class: "h-16 w-16 object-cover rounded-md") %>
               </div>
             <% end %>

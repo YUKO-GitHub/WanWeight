@@ -18,6 +18,7 @@ ja:
         meal_text: 食事
         exercise_text: 運動
         health_text: 健康
+        photos: 画像
     enums:
       dog:
         sex:
