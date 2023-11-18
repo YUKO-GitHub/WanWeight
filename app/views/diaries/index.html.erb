@@ -17,7 +17,6 @@
         <%= link_to diary_path(diary) do %>
           <div class="bg-white rounded-lg shadow-md p-4">
             <div class="flex items-start">
-              <!-- 日付と曜日 -->
               <div class="flex-shrink-0 mr-3">
                 <div class="text-xl font-semibold text-red-500">
                   <%= diary.date.strftime('%-d') %>
@@ -48,7 +47,6 @@
                 <%= truncate(diary.health_text, length: 50) %>
               <% end %>
             </div>           
-            <!-- 日記の画像 -->
             <% if diary.photos.attached? %>
               <div class="flex-shrink-0 mt-2">
                 <%= image_tag(url_for(diary.photos.first), alt: "日記の画像", class: "h-16 w-16 object-cover rounded-md") %>
