@@ -7,7 +7,7 @@ class DiariesController < ApplicationController
     @diaries = Diary.where(user: current_user)
       .or(Diary.where(dog: current_user.dogs))
       .where(date: @start_date..@end_date)
-      .order(date: :desc)
+      .order(date: :desc, updated_at: :desc)
   end
 
   def new
@@ -35,10 +35,28 @@ class DiariesController < ApplicationController
   end
 
   def update
-    if @diary.update(diary_params)
+    @dog_options = dogs_for_select
+
+    if params[:diary][:photos_to_delete]
+      params[:diary][:photos_to_delete].each do |id|
+        @diary.photos.find(id).purge
+      end
+    end
+
+    new_photos = params[:diary][:new_photos].reject(&:blank?)
+    @diary.assign_attributes(diary_params.except(:new_photos))
+
+    if @diary.photos.count + new_photos.count <= 4
+      @diary.photos.attach(new_photos) if @diary.valid?
+    else
+      @diary.errors.add(:photos, 'の数が上限を超えています')
+      render :edit, status: :unprocessable_entity
+      return
+    end
+
+    if @diary.save
       redirect_to diaries_path, notice: '日記が正常に更新されました。'
     else
-      @dog_options = dogs_for_select
       render :edit, status: :unprocessable_entity
     end
   end
@@ -51,7 +69,7 @@ class DiariesController < ApplicationController
   private
 
   def diary_params
-    params.require(:diary).permit(:dog_id, :date, :diary_text, :meal_text, :exercise_text, :health_text, photos: [])
+    params.require(:diary).permit(:dog_id, :date, :diary_text, :meal_text, :exercise_text, :health_text, photos: [], new_photos: [])
   end
 
   def set_diary

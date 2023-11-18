@@ -8,7 +8,7 @@ class Diary < ApplicationRecord
   private
 
   def photos_count_within_limit
-    if photos.attached? && photos.length > 4
+    if photos.length > 4
       errors.add(:photos, 'は最大4枚までです。')
     end
   end
