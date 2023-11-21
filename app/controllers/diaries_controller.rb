@@ -4,10 +4,10 @@ class DiariesController < ApplicationController
   before_action :set_diary, only: [:show, :edit, :update, :destroy]
 
   def index
-    @diaries = Diary.where(user: current_user)
-      .or(Diary.where(dog: current_user.dogs))
-      .where(date: @start_date..@end_date)
-      .order(date: :desc, updated_at: :desc)
+    @diaries = Diary.where(user: current_user).
+      or(Diary.where(dog: current_user.dogs)).
+      where(date: @start_date..@end_date).
+      order(date: :desc, updated_at: :desc)
   end
 
   def new
@@ -69,7 +69,8 @@ class DiariesController < ApplicationController
   private
 
   def diary_params
-    params.require(:diary).permit(:dog_id, :date, :diary_text, :meal_text, :exercise_text, :health_text, photos: [], new_photos: [])
+    params.require(:diary).permit(:dog_id, :date, :diary_text, :meal_text, :exercise_text, :health_text, photos: [],
+                                                                                                         new_photos: [])
   end
 
   def set_diary
