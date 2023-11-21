@@ -5,7 +5,7 @@
   </div>
 
   <div class="mt-6 sm:mx-auto sm:w-full sm:max-w-md">
-    <div class="bg-white py-8 px-6 shadow sm:rounded-lg sm:px-10">
+    <div class="bg-white py-8 px-2 shadow sm:rounded-lg sm:px-4">
       <%= form_with model: @diary, url: diaries_path, local: true do |f| %>
         <%= render 'diaries/shared/error_messages', diary: @diary %>
         <div>
@@ -21,7 +21,7 @@
         <div class="mt-6">
           <%= f.label :diary_text, "出来事", class: "block text-sm font-medium text-gray-700" %>
           <%= f.text_area :diary_text,
-                rows: 5,
+                rows: 6,
                 placeholder: "今日の出来事を記録しましょう",
                 class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-sm" %>
         </div>
@@ -29,7 +29,7 @@
         <div class="mt-6">
           <%= f.label :meal_text, "食事", class: "block text-sm font-medium text-gray-700" %>
           <%= f.text_area :meal_text,
-                rows: 5,
+                rows: 6,
                 placeholder: "今日食べたものを記録しましょう",
                 class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-sm" %>
         </div>
@@ -37,7 +37,7 @@
         <div class="mt-6">
           <%= f.label :exercise_text, "運動", class: "block text-sm font-medium text-gray-700" %>
           <%= f.text_area :exercise_text,
-                rows: 5,
+                rows: 6,
                 placeholder: "今日の運動を記録しましょう",
                 class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-sm" %>
         </div>
@@ -45,7 +45,7 @@
         <div class="mt-6">
           <%= f.label :health_text, "健康", class: "block text-sm font-medium text-gray-700" %>
           <%= f.text_area :health_text,
-                rows: 5,
+                rows: 6,
                 placeholder: "今日の体調を記録しましょう",
                 class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-sm" %>
         </div>
