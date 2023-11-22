@@ -17,8 +17,11 @@
           </div>
         <% else %>
           <div class="mt-10 flex items-center justify-center gap-x-6">
-            <%= link_to "新規登録", new_user_registration_path, class: "rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
-            <%= link_to "ログイン", new_user_session_path, class: "text-sm font-semibold leading-6 text-gray-900" %>
+            <%= link_to "新規登録", new_user_registration_path, class: "rounded-md bg-indigo-50 px-3.5 py-2.5 text-sm font-semibold text-indigo-600 shadow-sm hover:bg-indigo-100" %>
+            <%= link_to "ログイン", new_user_session_path, class: "rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50" %>
+          </div>
+          <div class="mt-6 flex items-center justify-center gap-x-6">
+            <%= link_to "ゲストログインはこちら", guest_sign_in_path, class: "rounded-full bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
           </div>
         <% end %>
       </div>

@@ -3,6 +3,12 @@
 class Users::SessionsController < Devise::SessionsController
   before_action :downcase_email, only: :create
 
+  def guest_sign_in
+    user = User.find_by(email: 'guest@example.com')
+    sign_in user
+    redirect_to root_path, notice: 'ゲストユーザーとしてログインしました。'
+  end
+
   protected
 
   def downcase_email
