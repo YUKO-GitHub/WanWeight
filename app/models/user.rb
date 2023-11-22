@@ -25,6 +25,7 @@ class User < ApplicationRecord
                        less_than: 5.megabytes,
                        message: 'のサイズは5MB以下にしてください',
                      }
+  validate :prevent_guest_user_updates, on: :update
 
   private
 
@@ -34,5 +35,11 @@ class User < ApplicationRecord
 
   def password_present?
     password.present?
+  end
+
+  def prevent_guest_user_updates
+    if email == 'guest@example.com' && (email_changed? || encrypted_password_changed?)
+      errors.add(:base, 'ゲストユーザーのメールアドレスとパスワードは変更できません。')
+    end
   end
 end
