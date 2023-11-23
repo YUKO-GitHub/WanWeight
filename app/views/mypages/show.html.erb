@@ -71,7 +71,7 @@
                     class: "mr-2 rounded-md bg-indigo-600 px-3.5 py-1.5 text-ms font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
                 <%= link_to '削除', dog_path(dog), 
                     data: { turbo_method: :delete, turbo_confirm: "本当に#{dog.name}の情報を削除してよろしいですか？" }, 
-                    class: "rounded-md bg-red-500 px-3.5 py-1.5 text-ms font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600" %>
+                    class: "rounded-md bg-red-600 px-3.5 py-1.5 text-ms font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600" %>
               </div>
               <p class="mb-1 text-sm text-gray-700">誕生日: <%= dog.birthday %></p>
               <p class="mb-1 text-sm text-gray-700">性別: <%= I18n.t("activerecord.enums.dog.sex.#{dog.sex}") %></p>
