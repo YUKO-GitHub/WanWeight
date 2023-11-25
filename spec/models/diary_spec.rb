@@ -5,6 +5,8 @@ RSpec.describe Diary, type: :model do
   let(:dog) { create(:dog, user: user) }
   let(:diary) { create(:diary, user: user, dog: dog) }
   let(:dummy_image) { fixture_file_upload(Rails.root.join('spec/fixtures/files/sample_user.jpg'), 'image/jpeg') }
+  let(:large_image) { fixture_file_upload(Rails.root.join('spec/fixtures/files/large_avatar.jpg'), 'image/jpeg') }
+  let(:invalid_format_image) { fixture_file_upload(Rails.root.join('spec/fixtures/files/invalid_avatar.svg'), 'image/svg') }
 
   it 'ユーザーとの関連付けが存在すること' do
     expect(diary.user_id).to eq(user.id)
@@ -42,5 +44,17 @@ RSpec.describe Diary, type: :model do
     5.times { diary.photos.attach(dummy_image) }
     expect(diary).to_not be_valid
     expect(diary.errors[:photos]).to include('は最大4枚までです。')
+  end
+
+  it '許可されていないファイル形式は無効であること' do
+    diary.photos.attach(invalid_format_image)
+    expect(diary).to_not be_valid
+    expect(diary.errors[:photos]).to include('はPNG、JPG、JPEG形式でアップロードしてください')
+  end
+
+  it '5MBを超える画像は無効であること' do
+    diary.photos.attach(large_image)
+    expect(diary).to_not be_valid
+    expect(diary.errors[:photos]).to include('のサイズは5MB以下にしてください')
   end
 end
