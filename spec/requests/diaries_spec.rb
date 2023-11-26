@@ -27,18 +27,18 @@ RSpec.describe "DiariesController", type: :request do
   describe "POST /create" do
     context "パラメーターが有効な場合" do
       it "日記の作成に成功し、リダイレクトすること" do
-        expect {
+        expect do
           post diaries_path, params: { diary: diary_attributes }
-        }.to change(Diary, :count).by(1)
+        end.to change(Diary, :count).by(1)
         expect(response).to redirect_to(diaries_path)
       end
     end
 
     context "パラメーターが無効な場合" do
       it "日記の作成に失敗し、再度新規作成ページをレンダリングすること" do
-        expect {
+        expect do
           post diaries_path, params: { diary: diary_attributes.merge(diary_text: long_text) }
-        }.to_not change(Diary, :count)
+        end.to_not change(Diary, :count)
         expect(response).to have_http_status(:unprocessable_entity)
       end
     end
@@ -85,9 +85,9 @@ RSpec.describe "DiariesController", type: :request do
   describe "DELETE /destroy" do
     it "日記の削除に成功し、リダイレクトすること" do
       diary = create(:diary, user: user, dog: dog)
-      expect {
+      expect do
         delete diary_path(diary)
-      }.to change(Diary, :count).by(-1)
+      end.to change(Diary, :count).by(-1)
       expect(response).to redirect_to(diaries_path)
     end
   end

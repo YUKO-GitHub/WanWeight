@@ -14,7 +14,7 @@ RSpec.describe "日記作成ページ", type: :system do
   end
 
   it '新規作成ページで日記を作成できること' do
-    expect {
+    expect do
       select dog.name, from: '日記の対象'
       fill_in '日付', with: Date.current
       fill_in '出来事', with: '今日は公園で遊んだ'
@@ -22,7 +22,7 @@ RSpec.describe "日記作成ページ", type: :system do
       fill_in '運動', with: '朝のジョギング'
       fill_in '健康', with: '体調良好'
       click_on '日記を作成'
-    }.to change(Diary, :count).by(1)
+    end.to change(Diary, :count).by(1)
 
     expect(current_path).to eq diaries_path
     expect(page).to have_content '今日は公園で遊んだ'
