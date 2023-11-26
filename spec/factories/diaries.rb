@@ -1,11 +1,11 @@
 FactoryBot.define do
   factory :diary do
-    user { nil }
+    association :user
     dog { nil }
-    date { "2023-11-15 13:14:39" }
-    diary_text { "MyText" }
-    meal_text { "MyText" }
-    exercise_text { "MyText" }
-    health_text { "MyText" }
+    date { Date.current }
+    diary_text { Faker::Lorem.paragraph }
+    meal_text { Faker::Lorem.paragraph }
+    exercise_text { Faker::Lorem.paragraph }
+    health_text { Faker::Lorem.paragraph }
   end
 end
