@@ -43,7 +43,8 @@ class DiariesController < ApplicationController
       end
     end
 
-    new_photos = params[:diary][:new_photos].reject(&:blank?)
+    new_photos = params.dig(:diary, :new_photos) || []
+    new_photos = new_photos.reject(&:blank?)
     @diary.assign_attributes(diary_params.except(:new_photos))
 
     if @diary.photos.count + new_photos.count <= 4
