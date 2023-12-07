@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe "愛犬の体重一覧ページ", type: :system do
   let(:user) { create(:user) }
   let(:dog) { create(:dog, user: user) }
-  let!(:dog_weights) { create(:dog_weight, dog: dog) }
+  let!(:dog_weights) { create(:dog_weight, dog: dog, date: Date.current) }
 
   before do
     sign_in user
