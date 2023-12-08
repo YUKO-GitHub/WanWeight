@@ -1,9 +1,28 @@
 name: WanWeight GitHub Actions
 
-on: [push, pull_request]
+on: [pull_request]
 
 jobs:
-  build:
+  Job-Rubocop:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: '3.2.2'
+
+    - name: Install dependencies
+      run: |
+        gem install bundler
+        bundle install
+
+    - name: Run Rubocop
+      run: bundle exec rubocop
+
+  Job-RSpec:
     runs-on: ubuntu-latest
 
     services:
@@ -33,7 +52,7 @@ jobs:
       run: |
         gem install bundler
         bundle install
-    
+
     - name: Precompile assets
       run: |
         RAILS_ENV=test bundle exec rails assets:precompile
@@ -47,11 +66,15 @@ jobs:
       run: |
         bin/rails db:create db:schema:load RAILS_ENV=test
 
-    - name: Run Rubocop
-      run: bundle exec rubocop
-
     - name: Run RSpec
       run: bundle exec rspec
+
+  Job-Heroku-Deploy:
+    runs-on: ubuntu-latest
+    needs: [Job-RSpec]
+
+    steps:
+    - uses: actions/checkout@v3
 
     - name: Deploy to Heroku
       uses: akhileshns/heroku-deploy@v3.12.12
