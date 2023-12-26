@@ -1,11 +1,11 @@
 <% provide(:title, "ログイン") %>
-<div class="flex min-h-full flex-col justify-center py-12 sm:px-6 lg:px-8">
+<div class="flex min-h-full flex-col justify-center mt-10 lg:mt-20 py-12 sm:px-6 lg:px-8">
   <div class="sm:mx-auto sm:w-full sm:max-w-md">
     <h2 class="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">ログイン</h2>
   </div>
 
   <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-[480px]">
-    <div class="bg-white px-6 py-12 shadow sm:rounded-lg sm:px-12">
+    <div class="bg-white mx-2 px-6 pt-6 pb-12 shadow sm:rounded-lg sm:px-12">
       <%= form_with model: @user, url: user_session_path, class: "space-y-6", local: true do |f| %>
         <div>
           <%= f.label :email, class: "block text-sm font-medium leading-6 text-gray-900" %>
@@ -14,7 +14,7 @@
                   autofocus: true,
                   placeholder: "メールアドレスを入力してください",
                   required: true, 
-                  class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
+                  class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 text-sm sm:leading-6" %>
           </div>
         </div>
 
@@ -24,7 +24,7 @@
             <%= f.password_field :password, 
                   placeholder: "パスワードを入力してください", 
                   required: true, 
-                  class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
+                  class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 text-sm sm:leading-6" %>
           </div>
         </div>
 
