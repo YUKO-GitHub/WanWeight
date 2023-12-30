@@ -8,8 +8,7 @@
   </head>
 
   <body class="bg-white">
-    <p class = "notice"> <%= notice %> </p>
-    <p class = "alert"> <%= alert %> </p>
+    <%= render 'layouts/shared/flash_message' %>
     <% if user_signed_in? %>
       <%= render 'layouts/shared/logged_in_header' %>
     <% else %>

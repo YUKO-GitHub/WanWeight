@@ -1,5 +1,5 @@
 <% provide(:title, "#{@diary_title}の日記") %>
-<div class="flex min-h-full flex-col justify-center mx-2 py-12 sm:px-6 lg:px-8">
+<div class="flex min-h-full flex-col justify-center mt-10 lg:mt-20 mx-2 py-12 sm:px-6 lg:px-8">
   <div class="mt-4 sm:mx-auto sm:w-full sm:max-w-md">
     <h2 class="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900"><%= @diary_title %>の日記</h2>
     <p class="text-center text-md text-gray-600"><%= @diary.date.to_fs(:custom_date) %></p>

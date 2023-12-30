@@ -16,12 +16,10 @@ RSpec.describe "プロフィールページ", type: :system do
 
   it "ユーザー情報が正しく表示されること" do
     expect(page).to have_content "プロフィール"
-    within "turbo-frame#profile" do
-      expect(page).to have_content user.name
-      expect(page).to have_content "#{user.birthday.to_fs(:custom_day)}"
-      expect(page).to have_content user.introduction
-      expect(page).to have_link "編集", href: profiles_edit_path
-    end
+    expect(page).to have_content user.name
+    expect(page).to have_content "#{user.birthday.to_fs(:custom_day)}"
+    expect(page).to have_content user.introduction
+    expect(page).to have_link "編集", href: profiles_edit_path
   end
 
   it "プロフィール画像が表示されること" do
@@ -29,9 +27,7 @@ RSpec.describe "プロフィールページ", type: :system do
   end
 
   it "「編集」リンクをクリックするとプロフィール編集ページに遷移すること" do
-    within "turbo-frame#profile" do
-      click_link "編集"
-    end
+    click_link "編集"
     expect(current_path).to eq profiles_edit_path
   end
 end

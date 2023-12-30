@@ -1,11 +1,11 @@
 <% provide(:title, "新規登録") %>
-<div class="flex min-h-full flex-col justify-center py-12 sm:px-6 lg:px-8">
+<div class="flex min-h-full flex-col justify-center mt-10 lg:mt-20 py-12 sm:px-6 lg:px-8">
   <div class="sm:mx-auto sm:w-full sm:max-w-md">
     <h2 class="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">新規登録</h2>
   </div>
 
   <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-[480px]">
-    <div class="bg-white px-6 py-12 shadow sm:rounded-lg sm:px-12">
+    <div class="bg-white mx-2 px-6 pt-6 pb-12 shadow sm:rounded-lg sm:px-12">
       <%= form_with model: @user, url: user_registration_path, class: "space-y-6", local: true do |f| %>
         <%= render "devise/shared/error_messages", resource: resource %>
 
@@ -16,7 +16,7 @@
                   autofocus: true, 
                   placeholder: "ユーザー名を20文字以内で入力してください", 
                   required: true, 
-                  class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %> 
+                  class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 text-sm sm:leading-6" %> 
           </div>
         </div>
 
@@ -25,7 +25,7 @@
           <div class="mt-2">
             <%= f.date_select :birthday, {start_year: 1950, end_year: 2023,
               include_blank: true, use_two_digit_numbers: true},
-              {class: "rounded-md input-tab birthday-select border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"}%>
+              {class: "rounded-md input-tab birthday-select border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 text-sm sm:leading-6"}%>
           </div>
         </div>
 
@@ -36,7 +36,7 @@
                   autocomplete: "email",
                   placeholder: "メールアドレスを入力してください",
                   required: true, 
-                  class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %> 
+                  class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 text-sm sm:leading-6" %> 
           </div>
         </div>
 
@@ -51,7 +51,7 @@
             <%= f.password_field :password, 
                   placeholder: "パスワードを入力してください", 
                   required: true, 
-                  class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"%>
+                  class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 text-sm sm:leading-6"%>
           </div>
         </div>
 
@@ -61,7 +61,7 @@
             <%= f.password_field :password_confirmation, 
                   placeholder: "もう一度パスワードを入力してください",
                   required: true, 
-                  class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"%>
+                  class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 text-sm sm:leading-6"%>
           </div>
         </div>
 

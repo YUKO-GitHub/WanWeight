@@ -1,4 +1,4 @@
-<div x-data="{ isOpen: false }" class="absolute inset-x-0 top-0 z-50">
+<div x-data="{ isOpen: false }" class="absolute inset-x-0 top-0 z-30">
   <nav class="flex items-center justify-between p-4 lg:px-8" aria-label="Global">
     <div class="flex items-center flex-1">
       <%= link_to root_path, class: "-m-1.5 p-1.5" do %>
@@ -25,7 +25,7 @@
         <% end %>
         <span class="ml-3"><%= current_user.name %></span>
       </button>
-      <div x-show="isOpen" x-cloak @click.away="isOpen = false" class="absolute top-20 right-5 mt-0 py-2 w-48 bg-white bg-opacity-50 rounded-md shadow-xl z-20">
+      <div x-show="isOpen" x-cloak @click.away="isOpen = false" class="absolute top-20 right-5 mt-4 py-2 w-48 bg-white bg-opacity-50 rounded-md shadow-xl z-20">
         <%= link_to "マイページ", mypage_path, class: "block px-4 py-2 text-gray-800 hover:bg-gray-200" %>
         <%= link_to "プロフィール", profiles_path, class: "block px-4 py-2 text-gray-800 hover:bg-gray-200" %>
         <%= link_to "設定", user_path, class: "block px-4 py-2 text-gray-800 hover:bg-gray-200" %>
@@ -36,7 +36,7 @@
 
   <!-- レスポンシブ サイドバー -->
   <div x-show="isOpen" class="lg:hidden" role="dialog" aria-modal="true">
-    <div class="fixed inset-0 z-50"></div>
+    <div class="fixed inset-0 z-30"></div>
     <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-4 py-4 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
       <div class="flex items-center justify-between">
         <%= link_to root_path, class: "-m-1.5 p-1.5" do %>
