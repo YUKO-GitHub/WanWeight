@@ -14,6 +14,7 @@ class User < ApplicationRecord
 
   validates :name, presence: true, length: { maximum: 20 }
   validates :birthday, presence: true
+  validates :height, presence: true
   validates :email, length: { maximum: 255 }, uniqueness: { case_sensitive: false }
   validates :password, format: { with: VALID_PASSWORD_REGEX, message: 'は半角英数を両方含む必要があります' }, if: :password_present?
   validates :introduction, length: { maximum: 100 }
