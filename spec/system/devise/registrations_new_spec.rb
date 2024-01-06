@@ -23,6 +23,7 @@ RSpec.describe "新規登録ページ", type: :system do
     select "2000", from: "user_birthday_1i"
     select "01", from: "user_birthday_2i"
     select "01", from: "user_birthday_3i"
+    fill_in "* 身長", with: 160.0
     fill_in "* メールアドレス", with: "test@example.com"
     fill_in "* パスワード", with: "password123"
     fill_in "* 確認用パスワード", with: "password123"
