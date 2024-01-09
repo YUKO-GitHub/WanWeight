@@ -15,7 +15,12 @@
         <div class="ml-4">
           <h3 class="text-xl font-semibold mb-2"><%= current_user.name %></h3>
           <% if @latest_user_weight %>
-            <p class="mb-1 text-gray-700">前回の記録: <%= @latest_user_weight.weight %> kg</p>
+            <p class="text-gray-700">前回の記録: <%= @latest_user_weight.weight %> kg</p>
+            <% if current_user.bmi %>
+              <p class="mb-2 text-gray-700">BMI: <%= current_user.bmi %></p>
+            <% else %>
+              <p class="mb-2 text-gray-700">BMIを計算するためのデータが不足しています</p>
+            <% end %>
             <p class="mb-1 text-gray-700 text-xs"><%= @latest_user_weight.date.to_fs(:custom_datetime) %></p>
           <% else %>
             <p class="mb-1 text-gray-700">体重の記録がありません</p>

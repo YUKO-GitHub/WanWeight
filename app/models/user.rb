@@ -28,6 +28,12 @@ class User < ApplicationRecord
                      }
   validate :prevent_guest_user_updates, on: :update
 
+  def bmi
+    latest_weight_record = self.user_weights.order(:date).last
+    return nil unless height.present? && latest_weight_record.present?
+    (latest_weight_record.weight / ((height / 100) ** 2)).round(1)
+  end
+
   private
 
   def downcase_email
