@@ -29,9 +29,26 @@ class User < ApplicationRecord
   validate :prevent_guest_user_updates, on: :update
 
   def bmi
-    latest_weight_record = self.user_weights.order(:date).last
-    return nil unless height.present? && latest_weight_record.present?
-    (latest_weight_record.weight / ((height / 100) ** 2)).round(1)
+    latest_weight_record = user_weights.order(:date).last
+    return nil if height.blank? || latest_weight_record.blank? # rubocop:disable Airbnb/SimpleModifierConditional
+    (latest_weight_record.weight / ((height / 100)**2)).round(1)
+  end
+
+  def bmi_status
+    case bmi
+    when ..18.5
+      '低体重(痩せ型)'
+    when 18.5...25
+      '普通体重'
+    when 25...30
+      '肥満(1度)'
+    when 30...35
+      '肥満(2度)'
+    when 35...40
+      '肥満(3度)'
+    else
+      '肥満(4度)'
+    end
   end
 
   private
