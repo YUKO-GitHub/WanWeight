@@ -41,13 +41,13 @@ class User < ApplicationRecord
     when 18.5...25
       '普通体重'
     when 25...30
-      '肥満(1度)'
+      '肥満度1'
     when 30...35
-      '肥満(2度)'
+      '肥満度2'
     when 35...40
-      '肥満(3度)'
+      '肥満度3'
     else
-      '肥満(4度)'
+      '肥満度4'
     end
   end
 
