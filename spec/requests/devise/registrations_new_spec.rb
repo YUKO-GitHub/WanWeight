@@ -14,6 +14,7 @@ RSpec.describe "RegistrationsControllerNew", type: :request do
       {
         name: "Example User",
         birthday: "2000-01-01",
+        height: 150.0,
         email: "user@example.com",
         password: "password123",
         password_confirmation: "password123",
