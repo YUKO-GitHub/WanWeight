@@ -290,6 +290,8 @@ GEM
     ruby-progressbar (1.13.0)
     ruby-vips (2.2.0)
       ffi (~> 1.12)
+    simple_calendar (3.0.2)
+      rails (>= 6.1)
     sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -353,6 +355,7 @@ DEPENDENCIES
   rails-i18n
   rspec-rails
   rubocop-airbnb
+  simple_calendar
   sprockets-rails
   stimulus-rails
   tailwindcss-rails
