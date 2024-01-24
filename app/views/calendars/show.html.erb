@@ -1,4 +1,33 @@
-<%= calendar do |date| %>
-  <%= date.day %>
-  <%# ここに日付ごとのイベントを表示するコード %>
-<% end %>
+<% provide(:title, "カレンダー") %>
+<div class="mt-10 lg:mt-20 py-10">
+  <div class="mx-auto max-w-7xl mt-6 px-4 sm:px-6 lg:px-8">
+    <%= link_to "← 戻る", mypage_path, class: "text-sm font-semibold leading-6 text-indigo-600 hover:text-indigo-500" %>
+    <h1 class="mt-4 text-3xl font-bold leading-tight tracking-tight text-gray-900">カレンダー</h1>
+  </div>
+  <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 mt-6">
+    <%= month_calendar attribute: :date, events: @events do |date, events| %>
+      <%= date.day %>
+      <% events.each do |event| %>
+        <div>
+          <% if event.is_a?(UserWeight) %>
+            <%= event.weight %> kg - ユーザーの体重
+          <% elsif event.is_a?(DogWeight) %>
+            <%= event.weight %> kg - 愛犬の体重
+          <% elsif event.is_a?(Diary) %>
+            <%= event.diary_text %> - 日記
+            <%# 必要に応じて他のフィールドも表示 %>
+            <% if event.meal_text.present? %>
+              <div>食事: <%= event.meal_text %></div>
+            <% end %>
+            <% if event.exercise_text.present? %>
+              <div>運動: <%= event.exercise_text %></div>
+            <% end %>
+            <% if event.health_text.present? %>
+              <div>健康: <%= event.health_text %></div>
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
