@@ -7,7 +7,7 @@
   <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 mt-6">
     <%= month_calendar attribute: :date, events: @events do |date, events| %>
       <%= date.day %>
-      <% events.each do |event| %>
+      <!-- <% events.each do |event| %>
         <div>
           <% if event.is_a?(UserWeight) %>
             <%= event.weight %> kg - ユーザーの体重
@@ -27,7 +27,7 @@
             <% end %>
           <% end %>
         </div>
-      <% end %>
+      <% end %> -->
     <% end %>
   </div>
 </div>
