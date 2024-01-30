@@ -25,19 +25,12 @@
     </div>
 
     <div class="flex bg-gray-200 text-xs leading-6 text-gray-700 lg:flex-auto">
-      <div class="w-full lg:grid lg:grid-cols-7 lg:grid-rows-6 lg:gap-px">
+      <div class="w-full grid grid-cols-7 grid-rows-6 gap-px">
         <% date_range.each_slice(7) do |week| %>
           <% week.each do |day| %>
-            <% day_classes = day.month == start_date.month && day.year == start_date.year ? 'bg-white' : 'bg-gray-50 text-gray-500' %>
-            <div class="relative <%= day_classes %> px-3 py-2 h-28">
-              <% if day == Date.today %>
-                <time class="flex h-6 w-6 items-center justify-center rounded-full bg-indigo-600 font-semibold text-white">
-                  <%= day.day %>
-                </time>
-              <% else %>
-                <time datetime="<%= day.to_s(:db) %>"><%= day.day %></time>
-              <% end %>
-            </div>
+            <%= content_tag :td, class: calendar.td_classes_for(day) do %>
+              <% instance_exec(day, calendar.sorted_events_for(day), &passed_block) %>
+            <% end %>
           <% end %>
         <% end %>
       </div>

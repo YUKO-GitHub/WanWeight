@@ -4,30 +4,42 @@
     <%= link_to "← 戻る", mypage_path, class: "text-sm font-semibold leading-6 text-indigo-600 hover:text-indigo-500" %>
     <h1 class="mt-4 text-3xl font-bold leading-tight tracking-tight text-gray-900">カレンダー</h1>
   </div>
+
   <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 mt-6">
-    <%= month_calendar attribute: :date, events: @events do |date, events| %>
-      <%= date.day %>
-      <!-- <% events.each do |event| %>
-        <div>
-          <% if event.is_a?(UserWeight) %>
-            <%= event.weight %> kg - ユーザーの体重
-          <% elsif event.is_a?(DogWeight) %>
-            <%= event.weight %> kg - 愛犬の体重
-          <% elsif event.is_a?(Diary) %>
-            <%= event.diary_text %> - 日記
-            <%# 必要に応じて他のフィールドも表示 %>
-            <% if event.meal_text.present? %>
-              <div>食事: <%= event.meal_text %></div>
+    <%= month_calendar attribute: :date, events: @events, start_date: @start_date do |date, events| %>
+      <% day_classes = date.month == @start_date.month && date.year == @start_date.year ? 'bg-white' : 'bg-gray-50 text-gray-500' %>
+      <div class="relative <%= day_classes %> px-3 py-2 h-16 lg:h-28">
+        <% if date == Date.today %>
+          <time class="flex h-6 w-6 items-center justify-center rounded-full bg-indigo-600 font-semibold text-white">
+            <%= date.day %>
+          </time>
+        <% else %>
+          <time>
+            <%= date.day %>
+          </time>
+        <% end %>
+
+        <% events.each do |event| %>
+          <div>
+            <% if event.is_a?(UserWeight) %>
+              <%= event.weight %> kg - ユーザーの体重
+            <% elsif event.is_a?(DogWeight) %>
+              <%= event.weight %> kg - 愛犬の体重
+            <% elsif event.is_a?(Diary) %>
+              <%= event.diary_text %> - 日記
+              <% if event.meal_text.present? %>
+                <div>食事: <%= event.meal_text %></div>
+              <% end %>
+              <% if event.exercise_text.present? %>
+                <div>運動: <%= event.exercise_text %></div>
+              <% end %>
+              <% if event.health_text.present? %>
+                <div>健康: <%= event.health_text %></div>
+              <% end %>
             <% end %>
-            <% if event.exercise_text.present? %>
-              <div>運動: <%= event.exercise_text %></div>
-            <% end %>
-            <% if event.health_text.present? %>
-              <div>健康: <%= event.health_text %></div>
-            <% end %>
-          <% end %>
-        </div>
-      <% end %> -->
+          </div>
+        <% end %>
+      </div>
     <% end %>
   </div>
 </div>
