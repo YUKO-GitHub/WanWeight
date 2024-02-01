@@ -19,26 +19,17 @@
           </time>
         <% end %>
 
-        <% events.each do |event| %>
-          <div>
+        <div class="flex gap-2">
+          <% events.each do |event| %>
             <% if event.is_a?(UserWeight) %>
-              <%= event.weight %> kg - ユーザーの体重
+              <i class="fa-solid fa-weight-scale text-3xl mr-2" style="color: #c61010;"></i>
             <% elsif event.is_a?(DogWeight) %>
-              <%= event.weight %> kg - 愛犬の体重
+              <i class="fa-solid fa-dog text-3xl mr-2" style="color: #74C0FC;"></i>
             <% elsif event.is_a?(Diary) %>
-              <%= event.diary_text %> - 日記
-              <% if event.meal_text.present? %>
-                <div>食事: <%= event.meal_text %></div>
-              <% end %>
-              <% if event.exercise_text.present? %>
-                <div>運動: <%= event.exercise_text %></div>
-              <% end %>
-              <% if event.health_text.present? %>
-                <div>健康: <%= event.health_text %></div>
-              <% end %>
+              <i class="fa-regular fa-note-sticky text-3xl mr-2" style="color: #63E6BE;"></i>
             <% end %>
-          </div>
-        <% end %>
+          <% end %>
+        </div>
       </div>
     <% end %>
   </div>
