@@ -6,11 +6,11 @@
       </time>
     </h1>
     <div class="flex items-center">
-      <div class="relative flex items-center rounded-md bg-white shadow-sm md:items-stretch">
-        <%= link_to t('simple_calendar.previous', default: 'Previous'), calendar.url_for_previous_view, class:"flex h-9 w-12 items-center justify-center rounded-l-md border-y border-l border-gray-300 pr-1 text-gray-400 hover:text-gray-500 focus:relative md:w-9 md:pr-0 md:hover:bg-gray-50" %>
-        <%= link_to t('simple_calendar.today', default: 'Today'), calendar.url_for_today_view, class:"hidden border-y border-gray-300 px-3.5 text-sm font-semibold text-gray-900 hover:bg-gray-50 focus:relative md:block" %>
-        <%= link_to t('simple_calendar.next', default: 'Next'), calendar.url_for_next_view, class:"flex h-9 w-12 items-center justify-center rounded-r-md border-y border-r border-gray-300 pl-1 text-gray-400 hover:text-gray-500 focus:relative md:w-9 md:pl-0 md:hover:bg-gray-50" %>
-      </div>
+      <div class="relative flex items-center justify-between rounded-md bg-white shadow-sm md:items-stretch">
+        <%= link_to t('simple_calendar.previous', default: 'Previous'), calendar.url_for_previous_view, class: "flex h-9 w-12 items-center justify-center rounded-l-md border-y border-l border-gray-300 pr-1 text-gray-400 hover:text-gray-500 focus:relative md:w-9 md:pr-0 md:hover:bg-gray-50" %>
+        <%= link_to t('simple_calendar.today', default: 'Today'), calendar.url_for_today_view, class: "hidden items-center border-y border-gray-300 px-3.5 text-sm font-semibold text-gray-900 hover:bg-gray-50 focus:relative md:flex" %>
+        <%= link_to t('simple_calendar.next', default: 'Next'), calendar.url_for_next_view, class: "flex h-9 w-12 items-center justify-center rounded-r-md border-y border-r border-gray-300 pl-1 text-gray-400 hover:text-gray-500 focus:relative md:w-9 md:pl-0 md:hover:bg-gray-50" %>
+      </div>      
     </div>
   </div>
 
