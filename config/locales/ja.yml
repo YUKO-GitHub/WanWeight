@@ -25,3 +25,6 @@ ja:
           unselected: 選択しない
           female: 女の子
           male: 男の子
+  simple_calendar:
+    previous: "<<"
+    next: ">>"

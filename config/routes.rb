@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get 'profiles', to: 'profiles#show'
   get 'profiles/edit'
   patch 'profiles', to: 'profiles#update'
+  get 'calendar', to: 'calendars#show'
 
   devise_for :users, skip: [:registrations, :sessions] 
 

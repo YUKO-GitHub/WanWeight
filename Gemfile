@@ -21,6 +21,8 @@ gem "devise-i18n"
 gem "rails-i18n"
 gem "chartkick"
 gem "groupdate"
+gem 'simple_calendar'
+gem "font-awesome-sass", "~> 6.5.1"
 
 group :development, :test do
   gem "debug", platforms: %i(mri mingw x64_mingw)
