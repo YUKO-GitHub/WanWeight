@@ -1,4 +1,6 @@
 class CalendarsController < ApplicationController
+  before_action :authenticate_user!
+
   def show
     start_date = params.fetch(:start_date, Date.today).to_date
 
