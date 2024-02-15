@@ -59,8 +59,20 @@ class UserWeightsController < ApplicationController
   end
 
   def combine_date_and_time
-    date = Date.parse(params[:user_weight][:date_part])
-    time = Time.zone.parse(params[:user_weight][:time_part])
-    @user_weight.date = Time.zone.local(date.year, date.month, date.day, time.hour, time.min, time.sec)
+    date_part = params[:user_weight][:date_part]
+    time_part = params[:user_weight][:time_part]
+
+    if date_part.blank? || time_part.blank?
+      @user_weight.errors.add(:date, "と時間を正しく入力してください。")
+      return
+    end
+
+    begin
+      date = Date.parse(date_part)
+      time = Time.zone.parse(time_part)
+      @user_weight.date = Time.zone.local(date.year, date.month, date.day, time.hour, time.min, time.sec)
+    rescue ArgumentError
+      @user_weight.errors.add(:date, "が無効です。")
+    end
   end
 end

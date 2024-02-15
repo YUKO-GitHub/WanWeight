@@ -7,6 +7,9 @@ ja:
         height: 身長
         avatar: 画像
         introduction: 自己紹介
+      user_weight:
+        date: 日時
+        weight: 体重
       dog:
         name: 名前
         birthday: 誕生日
