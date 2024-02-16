@@ -1,12 +1,12 @@
-<div class="w-full p-4 bg-gray-100">
+<div class="w-full mt-4 p-4 bg-gray-100">
   <%= line_chart user_weight, 
           height: "250px", 
           library: { 
             title: "体重一覧", 
             scales: { 
               y: { 
-                min: (latest_weight.weight - 20).floor,
-                max: (latest_weight.weight + 20).floor,
+                min: (latest_weight.weight - 10).floor,
+                max: (latest_weight.weight + 10).floor,
                 ticks: {
                   stepSize: 0.1
                 }

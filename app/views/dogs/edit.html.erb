@@ -42,8 +42,11 @@
         <div>
           <%= f.label :avatar, "画像を変更", class: "block text-sm font-medium leading-6 text-gray-900" %>
           <div class="mt-2">
-            <% if @user.avatar.present? %>
+            <% if @dog.avatar.present? %>
               <%= image_tag @dog.avatar, alt: "現在の画像", class: "mb-4 w-36 h-36 object-cover rounded-md shadow-lg" %>
+              <%= f.file_field :avatar, 
+                    class: "block w-full text-sm text-gray-900 file:mr-4 file:rounded-md file:border-0 file:py-1.5 file:px-4 file:text-sm file:font-semibold file:bg-gray-50 file:text-gray-700 hover:file:bg-gray-100" %>
+            <% else %>
               <%= f.file_field :avatar, 
                     class: "block w-full text-sm text-gray-900 file:mr-4 file:rounded-md file:border-0 file:py-1.5 file:px-4 file:text-sm file:font-semibold file:bg-gray-50 file:text-gray-700 hover:file:bg-gray-100" %>
             <% end %>
