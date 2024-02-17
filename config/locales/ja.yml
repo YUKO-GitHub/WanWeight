@@ -16,6 +16,9 @@ ja:
         sex: 性別
         breed: 犬種
         avatar: 画像
+      dog_weight:
+        date: 日時
+        weight: 体重
       diary:
         diary_text: 出来事
         meal_text: 食事

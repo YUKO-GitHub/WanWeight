@@ -4,7 +4,6 @@
     <%= link_to "← 戻る", mypage_path, class:"text-sm font-semibold leading-6 text-indigo-600 hover:text-indigo-500" %>
     <h1 class="mt-4 text-3xl font-bold leading-tight tracking-tight text-gray-900"><%= @dog.name %>の体重記録</h1>
   </div>
-
   <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 mt-6">
     <div class="flex justify-between items-center mb-4">
       <div class="mb-4">
@@ -14,14 +13,15 @@
       </div>
     </div>
     <% if @dog_weights_for_graph.present? %>
-      <%= link_to "体重を記録する", new_dog_dog_weight_path, class:"text-md font-semibold leading-6 text-indigo-600 hover:text-indigo-500" %>
+      <%= link_to "体重を記録する", new_dog_dog_weight_path, 
+          class:"rounded-md bg-indigo-600 px-2.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
       <%= render 'dog_weights/shared/dog_weight_chart', dog_weight: @dog_weights_for_graph, latest_weight: @latest_dog_weight %>
     <% else %>
-      <p>体重の記録がありません</p>
-      <%= link_to "体重を記録する", new_dog_dog_weight_path, class:"text-sm font-semibold leading-6 text-indigo-600 hover:text-indigo-500" %>
+      <p class="mb-2">体重の記録がありません</p>
+      <%= link_to "体重を記録する", new_dog_dog_weight_path, 
+          class:"rounded-md bg-indigo-600 px-2.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
     <% end %>
   </div>
-
   <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 mt-6">
     <table class="min-w-full bg-white border rounded text-sm md:text-base">
       <thead>
