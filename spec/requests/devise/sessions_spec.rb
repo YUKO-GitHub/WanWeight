@@ -15,7 +15,7 @@ RSpec.describe "SessionsController", type: :request do
   end
 
   describe "GET /new" do
-    it "正常なレスポンスを返すこと" do
+    it "正常にレスポンスを返すこと" do
       get new_user_session_path
       expect(response).to be_successful
       expect(response).to have_http_status "200"

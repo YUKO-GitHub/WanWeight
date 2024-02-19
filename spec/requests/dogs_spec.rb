@@ -1,12 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe DogsController, type: :request do
-  let(:user) { FactoryBot.create(:user) }
-  let(:other_user) { FactoryBot.create(:user) }
+  let(:user) { create(:user) }
+  let(:other_user) { create(:user) }
   let(:valid_attributes) { { name: "DogName", birthday: "2023-01-01", sex: "male", breed: "BreedName" } }
   let(:invalid_attributes) { { name: "", birthday: "", sex: "", breed: "" } }
-  let!(:dog) { FactoryBot.create(:dog, user: user) }
-  let!(:dog_to_destroy) { FactoryBot.create(:dog, user: user) }
+  let!(:dog) { create(:dog, user: user) }
+  let!(:dog_to_destroy) { create(:dog, user: user) }
 
   before do
     sign_in user
@@ -15,7 +15,7 @@ RSpec.describe DogsController, type: :request do
   describe "GET /new" do
     it "正常にレスポンスを返すこと" do
       get new_dog_path
-      expect(response).to have_http_status(:success)
+      expect(response).to be_successful
       expect(response).to have_http_status "200"
     end
   end
@@ -39,7 +39,8 @@ RSpec.describe DogsController, type: :request do
   describe "GET /edit" do
     it "正常にレスポンスを返すこと" do
       get edit_dog_path(dog)
-      expect(response).to have_http_status(:success)
+      expect(response).to be_successful
+      expect(response).to have_http_status "200"
     end
   end
 

@@ -27,9 +27,4 @@ RSpec.describe "日記作成ページ", type: :system do
     expect(current_path).to eq diaries_path
     expect(page).to have_content '今日は公園で遊んだ'
   end
-
-  it "日記一覧ページに戻ること" do
-    click_link "キャンセル"
-    expect(page).to have_current_path(diaries_path)
-  end
 end

@@ -54,7 +54,7 @@ RSpec.describe "マイページ", type: :system do
 
     it "愛犬のプロフィールカードが表示されること" do
       expect(page).to have_content dog.name
-      expect(page).to have_content dog.birthday
+      expect(page).to have_content dog.birthday.to_fs(:custom_day)
       expect(page).to have_content I18n.t("activerecord.enums.dog.sex.#{dog.sex}")
       expect(page).to have_content dog.breed if dog.breed.present?
       expect(page).to have_link "編集", href: edit_dog_path(dog)
