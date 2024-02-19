@@ -6,7 +6,7 @@
   </div>
 
   <div class="mt-6 sm:mx-auto sm:w-full sm:max-w-md">
-    <%= link_to "← 戻る", diaries_path, class: "text-sm font-semibold leading-6 text-indigo-600 hover:text-indigo-500" %>
+    <%= link_to "← 戻る", :back, class: "text-sm font-semibold leading-6 text-indigo-600 hover:text-indigo-500" %>
     <div class="bg-white mt-2 py-4 px-2 shadow sm:rounded-lg sm:px-4">
       <% ['diary_text', 'meal_text', 'exercise_text', 'health_text'].each do |field| %>
         <h3 class="text-sm sm:text-md font-medium mt-4"><%= Diary.human_attribute_name(field) %></h3>
