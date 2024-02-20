@@ -8,54 +8,54 @@
       <%= form_with model: @diary, url: diaries_path, local: true do |f| %>
         <%= render 'diaries/shared/error_messages', diary: @diary %>
         <div>
-          <%= f.label :dog_id, "日記の対象", class: "block text-sm font-medium text-gray-700" %>
-          <%= f.select :dog_id, @dog_options, {}, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-sm" %>
+          <%= f.label :dog_id, "日記の対象", class: "block text-base font-bold text-gray-700" %>
+          <%= f.select :dog_id, @dog_options, {}, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-base" %>
         </div>
         <div class="mt-6">
-          <%= f.label :date, "日付", class: "block text-sm font-medium text-gray-700" %>
-          <%= f.date_field :date, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-sm", required: true %>
+          <%= f.label :date, "日付", class: "block text-base font-bold text-gray-700" %>
+          <%= f.date_field :date, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-base", required: true %>
         </div>
         <div class="mt-6">
-          <%= f.label :diary_text, "出来事", class: "block text-sm font-medium text-gray-700" %>
+          <%= f.label :diary_text, "出来事", class: "block text-base font-bold text-gray-700" %>
           <%= f.text_area :diary_text,
                 rows: 6,
                 placeholder: "今日の出来事を記録しましょう",
-                class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-sm" %>
+                class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-base" %>
         </div>
         <div class="mt-6">
-          <%= f.label :meal_text, "食事", class: "block text-sm font-medium text-gray-700" %>
+          <%= f.label :meal_text, "食事", class: "block text-base font-bold text-gray-700" %>
           <%= f.text_area :meal_text,
                 rows: 6,
                 placeholder: "今日食べたものを記録しましょう",
-                class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-sm" %>
+                class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-base" %>
         </div>
         <div class="mt-6">
-          <%= f.label :exercise_text, "運動", class: "block text-sm font-medium text-gray-700" %>
+          <%= f.label :exercise_text, "運動", class: "block text-base font-bold text-gray-700" %>
           <%= f.text_area :exercise_text,
                 rows: 6,
                 placeholder: "今日の運動を記録しましょう",
-                class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-sm" %>
+                class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-base" %>
         </div>
         <div class="mt-6">
-          <%= f.label :health_text, "健康", class: "block text-sm font-medium text-gray-700" %>
+          <%= f.label :health_text, "健康", class: "block text-base font-bold text-gray-700" %>
           <%= f.text_area :health_text,
                 rows: 6,
                 placeholder: "今日の体調を記録しましょう",
-                class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-sm" %>
+                class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-base" %>
         </div>
         <div class="mt-6">
-          <%= f.label :photos, "写真をアップロード （最大4枚まで）", class: "block text-sm font-medium text-gray-700" %>
+          <%= f.label :photos, "写真をアップロード （最大4枚まで）", class: "block text-base font-bold text-gray-700" %>
           <%= f.file_field :photos, multiple: true, accept: 'image/*', 
                 class: "mt-4 block w-full text-sm text-gray-900 file:mr-4 file:rounded-md file:border-0 file:py-1.5 file:px-4 file:text-sm file:font-semibold file:bg-gray-100 file:text-gray-700 hover:file:bg-gray-200" %>
         </div>
         <div class="mt-6">
           <%= f.submit "日記を作成", 
-                class: "flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
+                class: "flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-base font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
         </div>
       <% end %>
     </div>
-    <div class="mt-6 text-center text-sm text-gray-500">
-      <%= link_to "キャンセル", :back, class:"font-semibold leading-6 text-indigo-600 hover:text-indigo-500" %>
+    <div class="mt-6 text-center text-base text-gray-500">
+      <%= link_to "キャンセル", :back, class:"font-bold leading-6 text-indigo-600 hover:text-indigo-500" %>
     </div>
   </div>
 </div>

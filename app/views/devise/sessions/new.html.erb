@@ -7,40 +7,40 @@
     <div class="bg-white mx-2 px-6 pt-6 pb-12 shadow sm:rounded-lg sm:px-12">
       <%= form_with model: @user, url: user_session_path, class: "space-y-6", local: true do |f| %>
         <div>
-          <%= f.label :email, class: "block text-sm font-medium leading-6 text-gray-900" %>
+          <%= f.label :email, class: "block text-base font-bold leading-6 text-gray-900" %>
           <div class="mt-2">
             <%= f.email_field :email,
                   autofocus: true,
                   placeholder: "メールアドレスを入力してください",
                   required: true, 
-                  class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 text-sm sm:leading-6" %>
+                  class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 text-base sm:leading-6" %>
           </div>
         </div>
         <div>
-          <%= f.label :password, class: "block text-sm font-medium leading-6 text-gray-900" %>
+          <%= f.label :password, class: "block text-base font-bold leading-6 text-gray-900" %>
           <div class="mt-2">
             <%= f.password_field :password, 
                   placeholder: "パスワードを入力してください", 
                   required: true, 
-                  class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 text-sm sm:leading-6" %>
+                  class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 text-base sm:leading-6" %>
           </div>
         </div>
         <div>
           <% if devise_mapping.rememberable? %>
             <div class="flex items-center">
               <%= f.check_box :remember_me, class: "h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600" %>
-              <%= f.label :remember_me, "ログイン状態を保存する", class: "ml-3 block text-sm leading-6 text-gray-900" %>
+              <%= f.label :remember_me, "ログイン状態を保存する", class: "ml-3 block text-base leading-6 text-gray-900" %>
             </div>
           <% end %>
         </div>
         <div>
           <%= f.submit "ログイン",
-                class: "flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
+                class: "flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-base font-bold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
         </div>
       <% end %>
     </div>
-    <div class="mt-10 text-center text-sm text-gray-500">
-      <%= link_to "新しくアカウントを作成する", new_user_registration_path, class:"font-semibold leading-6 text-indigo-600 hover:text-indigo-500" %>
+    <div class="mt-10 text-center text-base text-gray-500">
+      <%= link_to "新しくアカウントを作成する", new_user_registration_path, class:"font-bold leading-6 text-indigo-600 hover:text-indigo-500" %>
     </div>
   </div>
 </div>
