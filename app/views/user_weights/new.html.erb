@@ -12,10 +12,12 @@
           <div class="mt-2 flex flex-col gap-2">
             <div class="mt-2 flex gap-2">
               <%= f.date_field :date_part, 
+                    value: f.object.date || Time.zone.today.to_s,
                     class: "block rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 text-sm sm:leading-6" %> 
             </div>
             <div class="mt-2 flex gap-2">
               <%= f.time_field :time_part,
+                    value: f.object.date || Time.zone.now.strftime("%H:%M"),
                     class: "block rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 text-sm sm:leading-6" %> 
             </div>
           </div>
