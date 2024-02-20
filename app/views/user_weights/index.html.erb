@@ -36,7 +36,7 @@
       <tbody>
         <% @user_weights.each do |user_weight| %>
         <tr>
-          <td class="border px-4 py-2"><%= user_weight.date.to_fs(:custom_datetime) %></td>
+          <td class="border px-4 py-2"><%= user_weight.date.to_fs(:custom_time) %></td>
           <td class="border px-4 py-2"><%= user_weight.weight %> kg</td>
           <td class="border px-4 py-2">
             <%= link_to '編集', edit_user_weight_path(user_weight) %> |

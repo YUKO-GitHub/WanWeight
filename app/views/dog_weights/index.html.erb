@@ -34,7 +34,7 @@
       <tbody>
         <% @dog_weights.each do |dog_weight| %>
           <tr>
-            <td class="border px-4 py-2"><%= dog_weight.date.to_fs(:custom_datetime) %></td>
+            <td class="border px-4 py-2"><%= dog_weight.date.to_fs(:custom_time) %></td>
             <td class="border px-4 py-2"><%= dog_weight.weight %> kg</td>
             <td class="border px-4 py-2">
               <%= link_to '編集', edit_dog_dog_weight_path(@dog, dog_weight) %> |
