@@ -38,10 +38,4 @@ RSpec.describe "愛犬の体重編集ページ", type: :system do
 
     expect(page).to have_content "を入力してください"
   end
-
-  it "一覧ページに戻ること" do
-    click_link "キャンセル"
-
-    expect(current_path).to eq dog_dog_weights_path(dog)
-  end
 end

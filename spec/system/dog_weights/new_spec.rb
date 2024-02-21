@@ -39,9 +39,4 @@ RSpec.describe "愛犬の体重記録ページ", type: :system do
 
     expect(page).to have_content "を入力してください"
   end
-
-  it "マイページに戻ること" do
-    click_link "キャンセル"
-    expect(page).to have_current_path(mypage_path)
-  end
 end

@@ -20,7 +20,7 @@ RSpec.describe "愛犬の体重一覧ページ", type: :system do
     end
 
     it "体重の一覧が表示されること" do
-      expect(page).to have_content(dog_weights.date.to_fs(:custom_datetime))
+      expect(page).to have_content(dog_weights.date.to_fs(:custom_time))
       expect(page).to have_content("#{dog_weights.weight} kg")
       expect(page).to have_link('編集', href: edit_dog_dog_weight_path(dog, dog_weights))
       expect(page).to have_link('削除', href: dog_dog_weight_path(dog, dog_weights))

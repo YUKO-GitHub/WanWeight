@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "体重の一覧ページ", type: :system do
   let!(:user) { create(:user) }
-  let!(:user_weights) { create(:user_weight, user: user) }
+  let!(:user_weights) { create(:user_weight, user: user, date: Date.current) }
 
   before do
     sign_in user
@@ -19,7 +19,7 @@ RSpec.describe "体重の一覧ページ", type: :system do
     end
 
     it "体重の一覧が表示されること" do
-      expect(page).to have_content(user_weights.date.to_fs(:custom_datetime))
+      expect(page).to have_content(user_weights.date.to_fs(:custom_time))
       expect(page).to have_content("#{user_weights.weight} kg")
       expect(page).to have_link('編集', href: edit_user_weight_path(user_weights))
       expect(page).to have_link('削除', href: user_weight_path(user_weights))

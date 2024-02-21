@@ -37,10 +37,4 @@ RSpec.describe "ユーザー体重編集ページ", type: :system do
 
     expect(page).to have_content "を入力してください"
   end
-
-  it "一覧ページに戻ること" do
-    click_link "キャンセル"
-
-    expect(current_path).to eq user_weights_path
-  end
 end

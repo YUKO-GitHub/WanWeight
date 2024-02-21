@@ -9,9 +9,10 @@ RSpec.describe "UserWeightsController", type: :request do
   end
 
   describe "GET /index" do
-    it "正常なレスポンスを返すこと" do
+    it "正常にレスポンスを返すこと" do
       get user_weights_path
-      expect(response).to have_http_status(:success)
+      expect(response).to be_successful
+      expect(response).to have_http_status "200"
     end
   end
 

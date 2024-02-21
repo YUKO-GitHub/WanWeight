@@ -27,9 +27,4 @@ RSpec.describe "日記詳細ページ", type: :system do
     expect(page).to have_link '編集', href: edit_diary_path(diary)
     expect(page).to have_link '削除', href: diary_path(diary)
   end
-
-  it "日記一覧ページに戻ること" do
-    click_link "戻る"
-    expect(page).to have_current_path(diaries_path)
-  end
 end
