@@ -3,7 +3,6 @@
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <h1 class="mt-6 text-3xl font-bold leading-tight tracking-tight text-gray-900">マイページ</h1>
   </div>
-
   <div class="mx-auto max-w-7xl sm:px-4 lg:px-6">
     <div class="flex flex-col md:flex-row bg-white mt-6 mb-10 mx-2 border border-gray-100 rounded-lg p-6 shadow-md">
       <div class="w-full md:w-1/2 pb-4 flex">
@@ -74,13 +73,12 @@
           class: "mx-2 rounded-md bg-indigo-600 px-2.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
       <p class="my-4 mx-2 text-sm font-bold leading-tight tracking-tight text-gray-900">愛犬は最大３匹まで登録ができます</p>
     <% end %>
-  
+
     <% if @dogs_with_weights.present? %>
       <% @dogs_with_weights.each do |dog_with_weight| %>
         <% dog = dog_with_weight[:dog] %>
         <% latest_dog_weight = dog_with_weight[:latest_weight] %>
         <% dog_weights_for_month = dog_with_weight[:weights_for_month] %>
-
         <div class="flex flex-col md:flex-row bg-white mt-6 mx-2 border border-gray-100 rounded-lg p-6 shadow-md">
           <div class="w-full md:w-1/2 pb-4 flex">
             <% if dog.avatar.present? %>
@@ -97,7 +95,7 @@
                     data: { turbo_method: :delete, turbo_confirm: "本当に#{dog.name}の情報を削除してよろしいですか？" }, 
                     class: "rounded-md bg-red-600 px-3.5 py-1.5 text-ms font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600" %>
               </div>
-              <p class="mb-1 text-sm text-gray-700">誕生日: <%= dog.birthday %></p>
+              <p class="mb-1 text-sm text-gray-700">誕生日: <%= dog.birthday.to_fs(:custom_day) %></p>
               <p class="mb-1 text-sm text-gray-700">性別: <%= I18n.t("activerecord.enums.dog.sex.#{dog.sex}") %></p>
               <p class="mb-1 text-sm text-gray-700">犬種: <%= dog.breed %></p>
               <% if latest_dog_weight %>

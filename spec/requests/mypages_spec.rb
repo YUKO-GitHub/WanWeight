@@ -20,7 +20,7 @@ RSpec.describe "MypagesController", type: :request do
 
       it "愛犬情報がレスポンスに含まれていること" do
         expect(response.body).to include dog.name
-        expect(response.body).to include dog.birthday.strftime('%Y-%m-%d')
+        expect(response.body).to include dog.birthday.to_fs(:custom_day)
         expect(response.body).to include I18n.t("activerecord.enums.dog.sex.#{dog.sex}")
         expect(response.body).to include dog.breed if dog.breed.present?
       end

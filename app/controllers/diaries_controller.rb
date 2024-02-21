@@ -70,8 +70,8 @@ class DiariesController < ApplicationController
   private
 
   def diary_params
-    params.require(:diary).permit(:dog_id, :date, :diary_text, :meal_text, :exercise_text, :health_text, photos: [],
-                                                                                                         new_photos: [])
+    params.require(:diary).
+      permit(:dog_id, :date, :diary_text, :meal_text, :exercise_text, :health_text, photos: [], new_photos: [])
   end
 
   def set_diary

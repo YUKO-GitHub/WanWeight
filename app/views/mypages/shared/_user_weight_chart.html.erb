@@ -4,8 +4,8 @@
       title: "直近1ヶ月の体重推移", 
       scales: { 
         y: { 
-          min: [0, (latest_weight.weight - 20).floor].max,
-          max: (latest_weight.weight + 20).ceil,
+          min: [0, (latest_weight.weight - 10).floor].max,
+          max: (latest_weight.weight + 10).ceil,
           ticks: {
             stepSize: 0.1
           }

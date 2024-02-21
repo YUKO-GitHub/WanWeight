@@ -2,17 +2,23 @@ ja:
   activerecord:
     attributes:
       user:
-        name: 名前
+        name: ユーザー名
         birthday: 生年月日
         height: 身長
         avatar: 画像
         introduction: 自己紹介
+      user_weight:
+        date: 日時
+        weight: 体重
       dog:
         name: 名前
         birthday: 誕生日
         sex: 性別
         breed: 犬種
         avatar: 画像
+      dog_weight:
+        date: 日時
+        weight: 体重
       diary:
         diary_text: 出来事
         meal_text: 食事

@@ -11,16 +11,18 @@ RSpec.describe "DiariesController", type: :request do
   end
 
   describe "GET /index" do
-    it "日記一覧ページへのアクセスが成功すること" do
+    it "正常にレスポンスを返すこと" do
       get diaries_path
-      expect(response).to have_http_status(:ok)
+      expect(response).to be_successful
+      expect(response).to have_http_status "200"
     end
   end
 
   describe "GET /new" do
-    it "新規作成ページへのアクセスが成功すること" do
+    it "正常にレスポンスを返すこと" do
       get new_diary_path
-      expect(response).to have_http_status(:ok)
+      expect(response).to be_successful
+      expect(response).to have_http_status "200"
     end
   end
 
@@ -45,18 +47,20 @@ RSpec.describe "DiariesController", type: :request do
   end
 
   describe "GET /show" do
-    it "詳細ページへのアクセスが成功すること" do
+    it "正常にレスポンスを返すこと" do
       diary = create(:diary, user: user, dog: dog)
       get diary_path(diary)
-      expect(response).to have_http_status(:ok)
+      expect(response).to be_successful
+      expect(response).to have_http_status "200"
     end
   end
 
   describe "GET /edit" do
-    it "編集ページへのアクセスが成功すること" do
+    it "正常にレスポンスを返すこと" do
       diary = create(:diary, user: user, dog: dog)
       get edit_diary_path(diary)
-      expect(response).to have_http_status(:ok)
+      expect(response).to be_successful
+      expect(response).to have_http_status "200"
     end
   end
 

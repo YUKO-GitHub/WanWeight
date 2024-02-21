@@ -10,7 +10,7 @@ RSpec.describe "RegistrationsControllerEdit", type: :request do
   end
 
   describe "GET /edit_account" do
-    it "正常なレスポンスを返すこと" do
+    it "正常にレスポンスを返すこと" do
       get edit_user_registration_path
       expect(response).to be_successful
       expect(response).to have_http_status "200"
