@@ -39,11 +39,11 @@ https://wan-weight-b2644868dcf6.herokuapp.com/<br>
 <br>
 
 ## システム構成図
-
+![インフラ構成図](app/assets/images/diagram.png)<br>
 <br>
 
 ## ER図
-
+![インフラ構成図](app/assets/images/erd.png)<br>
 <br>
 
 ## 機能要件
