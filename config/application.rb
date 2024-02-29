@@ -39,6 +39,6 @@ module WanWeight
     end
 
     config.generators.system_tests = nil
-    config.active_storage.variant_processor = :image_processing
+    config.active_storage.variant_processor = :mini_magick
   end
 end
