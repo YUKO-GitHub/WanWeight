@@ -5,10 +5,11 @@
       title: "体重一覧", 
       scales: { 
         y: { 
-          min: [0, (latest_weight.weight - 5).floor].max,
-          max: (latest_weight.weight + 5).ceil,
+          min: [0, (latest_weight.weight.round - 0.5)].max,
+          max: (latest_weight.weight.round + 0.5),
           ticks: {
-            stepSize: 0.01
+            stepSize: 0.25,
+            maxTicksLimit: 20
           }
         },
         x: { 
