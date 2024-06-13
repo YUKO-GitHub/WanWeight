@@ -1,9 +1,9 @@
-<%= line_chart dog_weight, 
-    height: "250px", 
-    library: { 
-      title: "直近1ヶ月の体重推移", 
-      scales: { 
-        y: { 
+<%= line_chart dog_weight,
+    height: "250px",
+    library: {
+      title: "直近28日間の体重推移",
+      scales: {
+        y: {
           min: [0, (latest_weight.weight.round - 0.5)].max,
           max: (latest_weight.weight.round + 0.5),
           ticks: {
@@ -11,19 +11,23 @@
             maxTicksLimit: 20
           }
         },
-        x: { 
+        x: {
           type: 'time',
           time: {
             unit: 'day',
             displayFormats: {
               day: 'M/d'
             },
+            min: start_date,
+            max: end_date,
             tooltipFormat: 'M/d'
           },
           ticks: {
-            source: 'data'
+            source: 'auto',
+            autoSkip: true,
+            maxTicksLimit: 7
           }
         }
-      } 
+      }
     }
 %>
