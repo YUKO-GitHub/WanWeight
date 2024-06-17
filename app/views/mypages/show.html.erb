@@ -76,43 +76,44 @@
 
     <% if @dogs_with_weights.present? %>
       <% @dogs_with_weights.each do |dog_with_weight| %>
-        <% dog = dog_with_weight[:dog] %>
-        <% latest_dog_weight = dog_with_weight[:latest_weight] %>
-        <% dog_weights_for_month = dog_with_weight[:weights_for_month] %>
         <div class="flex flex-col md:flex-row bg-white mt-6 mx-2 border border-gray-100 rounded-lg p-6 shadow-md">
           <div class="w-full md:w-1/2 pb-4 flex">
-            <% if dog.avatar.present? %>
+            <% if dog_with_weight[:dog].avatar.present? %>
               <div class="flex-shrink-0">
-                <%= image_tag dog.avatar.variant(resize_to_limit: [400, 400]), class: "w-20 h-20 md:w-40 md:h-40 mt-2 object-cover rounded-md shadow-lg" %>
+                <%= image_tag dog_with_weight[:dog].avatar.variant(resize_to_limit: [400, 400]), class: "w-20 h-20 md:w-40 md:h-40 mt-2 object-cover rounded-md shadow-lg" %>
               </div>
             <% end %>
             <div class="ml-4">
-              <h3 class="text-xl font-semibold mb-2"><%= dog.name %></h3>
+              <h3 class="text-xl font-semibold mb-2"><%= dog_with_weight[:dog].name %></h3>
               <div class="text-sm text-blue-500 my-4">
-                <%= link_to '編集', edit_dog_path(dog), 
+                <%= link_to '編集', edit_dog_path(dog_with_weight[:dog]), 
                     class: "mr-2 rounded-md bg-indigo-600 px-3.5 py-1.5 text-ms font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
-                <%= link_to '削除', dog_path(dog), 
-                    data: { turbo_method: :delete, turbo_confirm: "本当に#{dog.name}の情報を削除してよろしいですか？" }, 
+                <%= link_to '削除', dog_path(dog_with_weight[:dog]), 
+                    data: { turbo_method: :delete, turbo_confirm: "本当に#{dog_with_weight[:dog].name}の情報を削除してよろしいですか？" }, 
                     class: "rounded-md bg-red-600 px-3.5 py-1.5 text-ms font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600" %>
               </div>
-              <p class="mb-1 text-sm text-gray-700">誕生日: <%= dog.birthday.to_fs(:custom_day) %></p>
-              <p class="mb-1 text-sm text-gray-700">性別: <%= I18n.t("activerecord.enums.dog.sex.#{dog.sex}") %></p>
-              <p class="mb-1 text-sm text-gray-700">犬種: <%= dog.breed %></p>
-              <% if latest_dog_weight %>
-                <p class="mb-1 mt-5 text-gray-700">前回の記録: <%= latest_dog_weight.weight %> kg</p>
-                <p class="mb-1 text-gray-700 text-xs"><%= latest_dog_weight.date.to_fs(:custom_datetime) %></p>
+              <p class="mb-1 text-sm text-gray-700">誕生日: <%= dog_with_weight[:dog].birthday.to_fs(:custom_day) %></p>
+              <p class="mb-1 text-sm text-gray-700">性別: <%= I18n.t("activerecord.enums.dog.sex.#{dog_with_weight[:dog].sex}") %></p>
+              <p class="mb-1 text-sm text-gray-700">犬種: <%= dog_with_weight[:dog].breed %></p>
+              <% if dog_with_weight[:latest_weight] %>
+                <p class="mb-1 mt-5 text-gray-700">前回の記録: <%= dog_with_weight[:latest_weight].weight %> kg</p>
+                <p class="mb-1 text-gray-700 text-xs"><%= dog_with_weight[:latest_weight].date.to_fs(:custom_datetime) %></p>
               <% else %>
                 <p class="my-5 text-gray-700">体重の記録がありません</p>
               <% end %>
               <div class="text-sm text-blue-500 mt-6">
-                <%= link_to '体重を記録', new_dog_dog_weight_path(dog), class: "mr-1" %>|
-                <%= link_to '体重を管理', dog_dog_weights_path(dog), class: "mr-1" %>
+                <%= link_to '体重を記録', new_dog_dog_weight_path(dog_with_weight[:dog]), class: "mr-1" %>|
+                <%= link_to '体重を管理', dog_dog_weights_path(dog_with_weight[:dog]), class: "mr-1" %>
               </div>
             </div>
           </div>
           <div class="w-full md:w-1/2 p-4 bg-gray-100">
-            <% if latest_dog_weight.present? %>
-              <%= render 'mypages/shared/dog_weight_chart', dog_weight: dog_weights_for_month, latest_weight: latest_dog_weight %>
+            <% if dog_with_weight[:latest_weight].present? %>
+              <%= render 'mypages/shared/dog_weight_chart', 
+              dog_weight: dog_with_weight[:weights_for_month], 
+              latest_weight: dog_with_weight[:latest_weight], 
+              start_date: dog_with_weight[:start_date], 
+              end_date: dog_with_weight[:end_date] %>
             <% else %>
               <p>体重の記録がありません</p>
             <% end %>
